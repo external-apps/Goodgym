@@ -4,12 +4,13 @@ const path = require('path');
 const routes = require('./routes');
 const app = express();
 
-app.set('view engine', 'hbs');
-
-app.engine('hbs', exphbs({
+const hbs = exphbs.create({
   defaultLayout: path.join(__dirname, '/templates/layout/main.hbs')
-}));
+});
 
+app.engine('hbs', hbs.engine);
+
+app.set('view engine', 'hbs');
 app.set('views', path.join(__dirname, '/templates/views'));
 
 app.use('/', routes);
