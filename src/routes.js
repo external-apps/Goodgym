@@ -1,15 +1,16 @@
 const express = require('express');
 const router = express.Router();
 
-router.get('/', (req, res) => {
+router.get('/:id', (req, res) => {
   res.render('home');
 });
 
-router.get('/qr', (req, res) => {
+router.get('/qr/:id', (req, res) => {
+  console.log(req.params.id);
   res.render('qr');
 });
 
-router.get('/task-sheet', (req, res) => {
+router.get('/task-sheet/:id', (req, res) => {
   res.render('task-sheet');
 });
 
