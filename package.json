@@ -19,7 +19,8 @@
   },
   "homepage": "https://github.com/external-apps/Goodgym#readme",
   "dependencies": {
-    "express": "^4.15.2"
+    "express": "^4.15.2",
+    "express-handlebars": "^3.0.0"
   },
   "devDependencies": {
     "nodemon": "^1.11.0"
