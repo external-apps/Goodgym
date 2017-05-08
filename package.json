@@ -1,0 +1,28 @@
+{
+  "name": "goodgym",
+  "version": "1.0.0",
+  "description": "April 2017 - Prototype app consuming Yoti",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "devStart": "node_modules/nodemon/bin/nodemon.js src/server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/external-apps/Goodgym.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/external-apps/Goodgym/issues"
+  },
+  "homepage": "https://github.com/external-apps/Goodgym#readme",
+  "dependencies": {
+    "express": "^4.15.2",
+    "express-handlebars": "^3.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.11.0"
+  }
+}
