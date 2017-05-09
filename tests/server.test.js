@@ -9,7 +9,7 @@ describe('GET /:id', () => {
     request
       .get('/run123')
       .expect(200)
-      .end(function(err, res) {
+      .end((err, res) => {
         done(err);
       });
   });
@@ -20,7 +20,7 @@ describe('GET /qr/:id', () => {
     request
       .get('/qr/run123')
       .expect(200)
-      .end(function(err, res) {
+      .end((err, res) => {
         done(err);
       });
   });
@@ -31,7 +31,7 @@ describe('GET /task-sheet/:id', () => {
     request
       .get('/task-sheet/run123')
       .expect(200)
-      .end(function(err, res) {
+      .end((err, res) => {
         done(err);
       });
   });
