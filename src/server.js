@@ -14,6 +14,7 @@ app.set('view engine', 'hbs');
 app.set('views', path.join(__dirname, '/templates/views'));
 
 app.use('/', routes);
+app.use(express.static('public'));
 
 if (!module.parent) {
   app.listen(3000, () => {

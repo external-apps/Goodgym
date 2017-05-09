@@ -6,7 +6,9 @@
   "scripts": {
     "start": "node src/server.js",
     "devStart": "./node_modules/nodemon/bin/nodemon.js src/server.js",
-    "test": "./node_modules/mocha/bin/mocha tests/**.js"
+    "test": "./node_modules/mocha/bin/mocha tests/**.js",
+    "buildCss": "./node_modules/node-sass/bin/node-sass --include-path scss scss/main.scss public/css/main.css",
+    "watchCss": "nodemon -e scss -x \"npm run buildCss\""
   },
   "repository": {
     "type": "git",
@@ -25,6 +27,7 @@
   "devDependencies": {
     "chai": "^3.5.0",
     "mocha": "^3.3.0",
+    "node-sass": "^4.5.2",
     "nodemon": "^1.11.0",
     "supertest": "^3.0.0"
   }
