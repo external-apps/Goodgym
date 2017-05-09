@@ -4,8 +4,8 @@ const app = require('../src/server');
 const request = supertest(app);
 const expect = chai.expect;
 
-describe('GET /:id', function() {
-  it('returns 200 status', function(done) {
+describe('GET /:id', () => {
+  it('returns 200 status', (done) => {
     request
       .get('/run123')
       .expect(200)
@@ -15,8 +15,8 @@ describe('GET /:id', function() {
   });
 });
 
-describe('GET /qr/:id', function() {
-  it('returns 200 status', function(done) {
+describe('GET /qr/:id', () => {
+  it('returns 200 status', (done) => {
     request
       .get('/qr/run123')
       .expect(200)
@@ -26,8 +26,8 @@ describe('GET /qr/:id', function() {
   });
 });
 
-describe('GET /task-sheet/:id', function() {
-  it('returns 200 status', function(done) {
+describe('GET /task-sheet/:id', () => {
+  it('returns 200 status', (done) => {
     request
       .get('/task-sheet/run123')
       .expect(200)
