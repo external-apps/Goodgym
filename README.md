@@ -19,4 +19,5 @@ Supertest
 
 ### Languages:
 Javascript <br>
-Sass
+Sass <br>
+node-sass

@@ -6,7 +6,6 @@ router.get('/:id', (req, res) => {
 });
 
 router.get('/qr/:id', (req, res) => {
-  console.log(req.params.id);
   res.render('qr');
 });
 
