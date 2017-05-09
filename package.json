@@ -4,11 +4,11 @@
   "description": "April 2017 - Prototype app consuming Yoti",
   "main": "index.js",
   "scripts": {
-    "start": "node src/server.js",
-    "devStart": "./node_modules/nodemon/bin/nodemon.js src/server.js",
-    "test": "./node_modules/mocha/bin/mocha tests/**.js",
-    "buildCss": "./node_modules/node-sass/bin/node-sass --include-path scss scss/main.scss public/css/main.css",
-    "watchCss": "nodemon -e scss -x \"npm run buildCss\""
+    "start": "./bin/start",
+    "devStart": "./bin/dev-start",
+    "test": "./bin/test",
+    "buildCss": "./bin/build-css",
+    "watchCss": "./bin/watch-css"
   },
   "repository": {
     "type": "git",
