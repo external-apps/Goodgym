@@ -21,3 +21,6 @@ Supertest
 Javascript <br>
 Sass <br>
 node-sass
+
+### Linting:
+ESLint
