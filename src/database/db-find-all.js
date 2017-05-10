@@ -1,9 +1,9 @@
 const GoodGymDB = require('./db-connection');
 
 const findAll = () => {
-  GoodGymDB.find({}, function (err, users) {
+  GoodGymDB.find({}, (err, runs) => {
     if (err) throw err;
-    console.log(users);
+    console.log(runs);
   });
 };
 

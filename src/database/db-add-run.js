@@ -5,12 +5,12 @@ const addRunToDB = (inputRun) => {
     run: inputRun
   });
 
-  newRun.save(function (err) {
+  newRun.save((err) => {
     if (err) throw err;
-    console.log('User created!');
+    console.log('Run created!');
   });
 };
 
-addRunToDB('run888');
+addRunToDB('run123');
 
 module.exports = addRunToDB;
