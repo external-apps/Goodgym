@@ -22,7 +22,8 @@
   "homepage": "https://github.com/external-apps/Goodgym#readme",
   "dependencies": {
     "express": "^4.15.2",
-    "express-handlebars": "^3.0.0"
+    "express-handlebars": "^3.0.0",
+    "mongoose": "^4.9.8"
   },
   "devDependencies": {
     "chai": "^3.5.0",
