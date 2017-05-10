@@ -1,6 +1,6 @@
 const GoodGymDB = require('./db-connection');
 
-const addUserToDB = (inputRun) => {
+const addRunToDB = (inputRun) => {
   let newRun = GoodGymDB({
     run: inputRun
   });
@@ -11,6 +11,6 @@ const addUserToDB = (inputRun) => {
   });
 };
 
-addUserToDB('run999');
+addRunToDB('run888');
 
-module.exports = addUserToDB;
+module.exports = addRunToDB;
