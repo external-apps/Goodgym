@@ -17,7 +17,7 @@ mongoose.connect(uri, options);
 
 conn.on('error', console.error.bind(console, 'connection error:'));
 
-conn.once('open', function () {
+conn.once('open', () => {
   console.log('We are connected!');
 });
 
