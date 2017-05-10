@@ -1,9 +1,9 @@
 const GoodGymDB = require('./db-connection');
 
 const findOneRun = (runName) => {
-  GoodGymDB.findOne({run: runName}, (err, runs) => {
+  GoodGymDB.findOne({run: runName}, (err, run) => {
     if (err) throw err;
-    console.log(runs);
+    console.log(run);
   });
 };
 
