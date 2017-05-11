@@ -16,10 +16,4 @@ app.set('views', path.join(__dirname, '/templates/views'));
 app.use('/', routes);
 app.use(express.static('public'));
 
-if (!module.parent) {
-  app.listen(3000, () => {
-    console.log('Our app listening on port 3000!');
-  });
-}
-
 module.exports = app;
