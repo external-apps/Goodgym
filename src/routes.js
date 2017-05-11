@@ -1,16 +1,12 @@
 const express = require('express');
 const router = express.Router();
 
-router.get('/:id', (req, res) => {
-  res.render('home');
-});
+const home = require('./routes/home');
+const qr = require('./routes/qr');
+const tasksheet = require('./routes/tasksheet');
 
-router.get('/qr/:id', (req, res) => {
-  res.render('qr');
-});
-
-router.get('/task-sheet/:id', (req, res) => {
-  res.render('task-sheet');
-});
+router.get('/:id', home);
+router.get('/qr/:id', qr);
+router.get('/task-sheet/:id', tasksheet);
 
 module.exports = router;
