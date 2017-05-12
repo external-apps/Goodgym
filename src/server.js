@@ -13,7 +13,7 @@ app.engine('hbs', hbs.engine);
 app.set('view engine', 'hbs');
 app.set('views', path.join(__dirname, '/templates/views'));
 
-app.use('/', routes);
 app.use(express.static('public'));
+app.use('/', routes);
 
 module.exports = app;
