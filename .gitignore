@@ -2,3 +2,4 @@ node_modules
 DS_Store
 public/css/main.css
 *.pem
+npm-debug.log

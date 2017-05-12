@@ -9,18 +9,16 @@ const PEM = fs.readFileSync(PEM_PATH);
 let yotiClient = new YotiClient(SDK_ID, PEM);
 
 const tasksheet = (req, res) => {
-  let token = req.query.token;
+  const token = req.query.token;
   if (!token) {
-    return res.send('No token found');
+    res.status(500).send('No yoti token provided');
+    return;
   }
   yotiClient.getActivityDetails(token).then((activityDetails) => {
-    const user = {
-      userId: activityDetails.getUserId(),
-      profile: activityDetails.getUserProfile(),
-      outcome: activityDetails.getOutcome()
-    };
+    const userProfile = activityDetails.getUserProfile();
     res.render('task-sheet', {
-      user: user.profile.givenNames
+      firstName: userProfile.givenNames,
+      lastName: userProfile.familyName
     });
   }).catch((err) => {
     console.error(err);
