@@ -11,7 +11,7 @@ const qrMaker = (req, res) => {
     const svg = new QRCode({
       content: url,
       color: 'white',
-      background: '#432668',
+      background: '#ED1C24',
       width: 300,
       height: 300,
       padding: 4
