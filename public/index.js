@@ -1,3 +1,4 @@
-document.body.style.backgroundColor = 'red';
-
-console.log('hi');
+(function () {
+  'use strict';
+  console.log('hi');
+})();
