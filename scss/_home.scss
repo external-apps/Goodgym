@@ -1,0 +1,42 @@
+.home-container {
+  max-width: 1250px;
+  margin: 0 auto;
+
+  display: -webkit-flex;
+  display: flex;
+
+  -webkit-align-items: center;
+  align-items: center;
+
+  -webkit-justify-content: center;
+  justify-content: center;
+
+  -webkit-flex-flow: row wrap;
+  flex-flow: row wrap;
+
+  -webkit-align-content: center;
+  align-content: center;
+}
+
+.home-header {
+  width: 100%;
+  text-align: center;
+}
+
+.form {
+  width: 95%;
+  height: 145px;
+  background-color: red;
+  margin: 8px;
+  text-align: center;
+}
+
+.register-button {
+  margin-top: 15px;
+}
+
+@media screen and (min-width: 768px){
+  .form {
+    width: 40%;
+  }
+}
