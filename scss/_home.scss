@@ -15,8 +15,19 @@
   font-size: 2rem;
 }
 
+.home-logo {
+  width: 150px;
+  margin-top: 25px;
+}
+
+.home-title {
+  margin-top: 8px;
+  margin-bottom: 15px;
+  line-height: 60px;
+}
+
 .form {
-  height: 215px;
+  height: 226px;
   margin: 0 8px 16px;
   text-align: center;
 
@@ -26,6 +37,8 @@
     padding: 5px;
     background-color: #ed1c24;
     margin: 0;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
   }
 }
 
@@ -36,10 +49,10 @@
 }
 
 .contact {
-  height: 80px;
+  height: 102px;
 
   & textarea {
-    height: 47%;
+    height: 56%;
   }
 }
 
@@ -48,9 +61,10 @@
 }
 
 .google-map {
-  border: 1px solid white;
   background-color: white;
   height: 305px;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
 }
 
 .register-button {
@@ -64,6 +78,8 @@ textarea {
   width: 100%;
   box-sizing: border-box;
   height: 80%;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
 
   &:focus {
     outline: none;
