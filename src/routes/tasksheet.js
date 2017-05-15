@@ -8,6 +8,10 @@ const PEM = fs.readFileSync(PEM_PATH);
 
 let yotiClient = new YotiClient(SDK_ID, PEM);
 
+if (!SDK_ID) {
+  console.log('Enviroment variable CLIENT_SDK_ID must be set.');
+}
+
 const tasksheet = (req, res) => {
   const token = req.query.token;
   if (!token) {
