@@ -1,0 +1,99 @@
+.home-container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.col-1,
+.col-2 {
+  width: 100%;
+}
+
+.home-header {
+  width: 100%;
+  text-align: center;
+  font-family: $header-font;
+  font-size: 2rem;
+}
+
+.home-logo {
+  width: 150px;
+  margin-top: 25px;
+}
+
+.home-title {
+  margin-top: 8px;
+  margin-bottom: 15px;
+  line-height: 60px;
+}
+
+.form {
+  height: 226px;
+  margin: 0 8px 16px;
+  text-align: center;
+
+  h4 {
+    font-family: $header-font;
+    font-size: 1.4rem;
+    padding: 5px;
+    background-color: #ed1c24;
+    margin: 0;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+  }
+}
+
+.button-container {
+  text-align: center;
+  margin-top: 15px;
+  width: 100%
+}
+
+.contact {
+  height: 102px;
+
+  & textarea {
+    height: 56%;
+  }
+}
+
+.map {
+  height: 350px;
+}
+
+.google-map {
+  background-color: white;
+  height: 305px;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+}
+
+.register-button {
+  margin-top: 15px;
+}
+
+textarea {
+  resize: none;
+  border: none;
+  font-size: 1rem;
+  width: 100%;
+  box-sizing: border-box;
+  height: 80%;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+@media screen and (min-width: 768px){
+  .col-1 {
+    float: left;
+    width: 50%;
+  }
+
+  .col-2 {
+    float: right;
+    width: 50%;
+  }
+}
