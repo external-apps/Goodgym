@@ -3,4 +3,4 @@ DS_Store
 public/css/main.css
 *.pem
 .env
-npm.debug.log
+bin/npm.debug.log
