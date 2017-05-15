@@ -2,3 +2,5 @@ node_modules
 DS_Store
 public/css/main.css
 *.pem
+.env
+npm.debug.log
