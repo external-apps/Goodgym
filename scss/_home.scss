@@ -24,15 +24,29 @@
 }
 
 .form {
+  height: 300px;
   width: 95%;
-  height: 145px;
   background-color: red;
   margin: 8px;
   text-align: center;
+  box-sizing: border-box;
 }
 
 .register-button {
   margin-top: 15px;
+}
+
+textarea {
+  resize: none;
+  border: none;
+  font-size: 1rem;
+  width: 100%;
+  box-sizing: border-box;
+  height: 80%;
+
+  &:focus {
+    outline: none;
+  }
 }
 
 @media screen and (min-width: 768px){
