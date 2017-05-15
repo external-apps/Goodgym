@@ -10,21 +10,18 @@
   saveButton.addEventListener('click', saveToDatabase);
 
   function Task () {
-    this.task = arguments[0][0];
-    this.location = arguments[0][1];
-    this.purpose = arguments[0][2];
-    this.contact = arguments[0][3];
-    this.risk = arguments[0][4];
+    this.task = arguments[0][0].value;
+    this.location = arguments[0][1].value;
+    this.purpose = arguments[0][2].value;
+    this.contact = arguments[0][3].value;
+    this.risk = arguments[0][4].value;
   }
 
   function saveToDatabase () {
     // Send post request to backend with the data from all of the text areas.
-    var taskInfoArray = [].slice.call(document.querySelectorAll('textarea'));
-    var taskInfoObj = taskInfoArray.map(function (textarea) {
-      return textarea.value;
-    });
 
-    var taskObj = new Task(taskInfoObj);
+    var taskInfoArray = [].slice.call(document.querySelectorAll('textarea'));
+    var taskObj = new Task(taskInfoArray);
     console.log(taskObj);
   }
 })();
