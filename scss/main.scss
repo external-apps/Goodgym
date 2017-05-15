@@ -1,9 +1,11 @@
+@import "fonts";
 @import "home";
 
 body {
   background-color: lightblue;
   font-size: 16px;
   box-sizing: border-box;
+  font-weight: $body-font;
 }
 
 .logo {

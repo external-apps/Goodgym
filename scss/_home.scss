@@ -1,44 +1,56 @@
 .home-container {
-  max-width: 1250px;
+  max-width: 900px;
   margin: 0 auto;
+}
 
-  display: -webkit-flex;
-  display: flex;
-
-  -webkit-align-items: center;
-  align-items: center;
-
-  -webkit-justify-content: center;
-  justify-content: center;
-
-  -webkit-flex-flow: row wrap;
-  flex-flow: row wrap;
-
-  -webkit-align-content: center;
-  align-content: center;
+.col-1,
+.col-2 {
+  width: 100%;
 }
 
 .home-header {
   width: 100%;
   text-align: center;
+  font-family: $header-font;
+  font-size: 2rem;
 }
 
 .form {
-  height: 300px;
-  // width: 95%;
-  background-color: red;
-  margin: 8px;
+  height: 215px;
+  margin: 0 8px 16px;
   text-align: center;
-  box-sizing: border-box;
+
+  h4 {
+    font-family: $header-font;
+    font-size: 1.4rem;
+    padding: 5px;
+    background-color: #ed1c24;
+    margin: 0;
+  }
 }
 
-.map {
-  height: 500px;
-  align-self:
+.button-container {
+  text-align: center;
+  margin-top: 15px;
+  width: 100%
 }
 
 .contact {
-  height: 150px;
+  height: 80px;
+
+  & textarea {
+    height: 47%;
+  }
+}
+
+.map {
+  height: 350px;
+}
+
+.google-map {
+  border: 1px solid white;
+  background-color: white;
+  height: 305px;
 }
 
 .register-button {
@@ -59,7 +71,13 @@ textarea {
 }
 
 @media screen and (min-width: 768px){
-  .form {
-    width: 40%;
+  .col-1 {
+    float: left;
+    width: 50%;
+  }
+
+  .col-2 {
+    float: right;
+    width: 50%;
   }
 }
