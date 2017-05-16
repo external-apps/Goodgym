@@ -23,7 +23,7 @@ conn.once('open', () => {
 
 // create a schema
 const GoodGymSchema = new Schema({
-  run: String
+  run: Object
 });
 
 // the schema is useless so far

@@ -1,6 +1,17 @@
+const addToDatabase = require('../database/db-add-run');
+console.log(addToDatabase);
+
 const postRun = (req, res) => {
-  console.log('request payload:', req.body);
-  res.send('POST request to the homepage');
+  var body = req.body;
+  addToDatabase(body, function (err, body) {
+    if (err) {
+      console.log(err);
+      res.send('POST request not made!');
+    } else {
+      console.log('body:', body);
+      res.send('run added to database');
+    }
+  });
 };
 
 module.exports = postRun;
