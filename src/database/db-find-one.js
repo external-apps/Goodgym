@@ -1,12 +1,12 @@
 const GoodGymDB = require('./db-connection');
 
-const findOneRun = (runName) => {
-  GoodGymDB.findOne({run: runName}, (err, run) => {
+const findOneRun = (runId) => {
+  GoodGymDB.find({'run.runId': runId}, (err, run) => {
     if (err) throw err;
     console.log(run);
   });
 };
 
-findOneRun('run123');
+findOneRun('p');
 
 module.exports = findOneRun;

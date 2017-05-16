@@ -10,7 +10,7 @@
   saveButton.addEventListener('click', saveToDatabase);
 
   function Task (tasks, runId) {
-    this.runID = runId;
+    this.runId = runId;
     this.task = tasks[0].value;
     this.location = tasks[1].value;
     this.purpose = tasks[2].value;
