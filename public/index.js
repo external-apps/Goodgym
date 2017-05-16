@@ -1,5 +1,6 @@
 (function () {
   'use strict';
+  var posted = false;
 
   var registerButton = document.getElementsByClassName('_yoti-verify-button')[0];
   if (registerButton) {
@@ -18,13 +19,19 @@
   }
 
   function saveToDatabase () {
-    // Send post request to backend with the data from all of the text areas.
     var taskInfoArray = [].slice.call(document.querySelectorAll('textarea'));
     var taskObj = new Task(taskInfoArray);
-    httpPostRequest(taskObj);
+
+    if (posted) {
+      console.log('updated');
+      httpUpdateRequest(taskObj);
+    } else {
+      httpPostRequest(taskObj);
+    }
   }
 
   function httpPostRequest (info) {
+    posted = true;
     var http = new XMLHttpRequest();
     var url = '/post-run/:id';
     http.open('POST', url, true);
