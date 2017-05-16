@@ -1,6 +1,5 @@
 (function () {
   'use strict';
-  var posted = false;
 
   var registerButton = document.getElementsByClassName('_yoti-verify-button')[0];
   if (registerButton) {
@@ -10,7 +9,8 @@
   var saveButton = document.getElementsByClassName('save-button')[0];
   saveButton.addEventListener('click', saveToDatabase);
 
-  function Task (tasks) {
+  function Task (tasks, runId) {
+    this.runID = runId;
     this.task = tasks[0].value;
     this.location = tasks[1].value;
     this.purpose = tasks[2].value;
@@ -19,19 +19,13 @@
   }
 
   function saveToDatabase () {
+    var runId = window.location.pathname.slice(1);
     var taskInfoArray = [].slice.call(document.querySelectorAll('textarea'));
-    var taskObj = new Task(taskInfoArray);
-
-    if (posted) {
-      console.log('updated');
-      httpUpdateRequest(taskObj);
-    } else {
-      httpPostRequest(taskObj);
-    }
+    var taskObj = new Task(taskInfoArray, runId);
+    httpPostRequest(taskObj);
   }
 
   function httpPostRequest (info) {
-    posted = true;
     var http = new XMLHttpRequest();
     var url = '/post-run/:id';
     http.open('POST', url, true);
