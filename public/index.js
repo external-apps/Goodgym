@@ -10,12 +10,12 @@
   var saveButton = document.getElementsByClassName('save-button')[0];
   saveButton.addEventListener('click', saveToDatabase);
 
-  function Task () {
-    this.task = arguments[0][0].value;
-    this.location = arguments[0][1].value;
-    this.purpose = arguments[0][2].value;
-    this.contact = arguments[0][3].value;
-    this.risk = arguments[0][4].value;
+  function Task (tasks) {
+    this.task = tasks[0].value;
+    this.location = tasks[1].value;
+    this.purpose = tasks[2].value;
+    this.contact = tasks[3].value;
+    this.risk = tasks[4].value;
   }
 
   function saveToDatabase () {
