@@ -19,9 +19,23 @@
 
   function saveToDatabase () {
     // Send post request to backend with the data from all of the text areas.
-
     var taskInfoArray = [].slice.call(document.querySelectorAll('textarea'));
     var taskObj = new Task(taskInfoArray);
-    console.log(taskObj);
+    httpPostRequest(taskObj);
+  }
+
+  function httpPostRequest (info) {
+    var http = new XMLHttpRequest();
+    var url = '/post-run/:id';
+    http.open('POST', url, true);
+    http.setRequestHeader('Content-Type', 'application/json');
+    var payload = JSON.stringify(info);
+
+    http.onreadystatechange = function () {
+      if (http.readyState === 4 && http.status === 200) {
+        console.log(http.responseText);
+      }
+    };
+    http.send(payload);
   }
 })();
