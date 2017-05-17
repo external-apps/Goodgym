@@ -23,7 +23,7 @@
   }
 
   function directToHomePage (runId) {
-    window.location.pathname = '/' + runId;
+    window.location.pathname = runId;
   }
 
   function Task (tasks, runId) {
