@@ -1,13 +1,4 @@
 @import "fonts";
+@import "layout";
 @import "home";
-
-body {
-  background-color: lightblue;
-  font-size: 16px;
-  box-sizing: border-box;
-  font-weight: $body-font;
-}
-
-.logo {
-  width: 200px;
-}
+@import "login";
