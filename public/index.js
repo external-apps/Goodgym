@@ -7,7 +7,9 @@
   }
 
   var saveButton = document.getElementsByClassName('save-button')[0];
-  saveButton.addEventListener('click', saveToDatabase);
+  if (saveButton) {
+    saveButton.addEventListener('click', saveToDatabase);
+  }
 
   function Task (tasks, runId) {
     this.runId = runId;

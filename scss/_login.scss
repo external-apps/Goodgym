@@ -1,5 +1,14 @@
 .login-container {
   @extend %main-container;
+  height: 80vh;
+  display: flex;
+  display: -webkit-flex;
+  align-items: center;
+  -webkit-align-items: center;
+  flex-flow: column nowrap;
+  -webkit-flex-flow: column nowrap;
+  -webkit-justify-content: center;
+  justify-content: center;
 }
 
 .login-header {
@@ -9,4 +18,36 @@
 .login-button {
   @extend %button;
   width: 200px;
+  margin: 0;
+}
+
+.form-container {
+  width: 100%;
+  text-align: center;
+  font-family: $body-font;
+  font-size: 1.2rem;
+}
+
+.form-container__input {
+  width: 80%;
+  padding: 10px;
+  border-radius: 25px;
+  border-style: none;
+  font-size: 1.2rem;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.form-container__input:focus {
+  outline: none;
+}
+
+.form-container__title {
+  margin: 7px;
+}
+
+@media screen and (min-width: 500px){
+  .form-container__input {
+    width: 350px;
+  }
 }

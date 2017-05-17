@@ -27,6 +27,15 @@ body {
   height: 41.5px;
   margin-left: 8px;
   margin-top: 10px;
+
+  &:focus {
+    outline: none;
+  }
+
+  &:active {
+    -webkit-transform: translate(0,1px);
+    transform: translate(0,1px);
+  }
 }
 
 %button-container {
