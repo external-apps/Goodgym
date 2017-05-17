@@ -1,0 +1,12 @@
+.login-container {
+  @extend %main-container;
+}
+
+.login-header {
+  @extend %header;
+}
+
+.login-button {
+  @extend %button;
+  width: 200px;
+}

@@ -1,0 +1,41 @@
+body {
+  background-color: lightblue;
+  font-size: 16px;
+  box-sizing: border-box;
+  font-weight: $body-font;
+}
+
+%main-container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+%header {
+  width: 100%;
+  text-align: center;
+  font-family: $header-font;
+  font-size: 2rem;
+}
+
+%button {
+  font-family: $body-font;
+  font-size: 1.2rem;
+  border: 2px solid #ed1c24;
+  background-color: transparent;
+  border-radius: 5px;
+  width: 90px;
+  height: 41.5px;
+  margin-left: 8px;
+  margin-top: 10px;
+}
+
+%button-container {
+  text-align: center;
+  margin: 15px 0;
+  width: 100%;
+}
+
+// this need to go in the _qr.scss
+.logo {
+  width: 200px;
+}

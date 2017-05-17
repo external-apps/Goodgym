@@ -1,6 +1,5 @@
 .home-container {
-  max-width: 900px;
-  margin: 0 auto;
+  @extend %main-container;
 }
 
 .col-1,
@@ -9,10 +8,7 @@
 }
 
 .home-header {
-  width: 100%;
-  text-align: center;
-  font-family: $header-font;
-  font-size: 2rem;
+  @extend %header;
 }
 
 .home-logo {
@@ -43,20 +39,11 @@
 }
 
 .button-container {
-  text-align: center;
-  margin-top: 15px;
-  width: 100%
+  @extend %button-container;
 }
 
 .save-button {
-  font-family: $body-font;
-  font-size: 1.2rem;
-  border: 2px solid #ed1c24;
-  background-color: transparent;
-  border-radius: 5px;
-  width: 90px;
-  height: 41.5px;
-  margin-left: 8px;
+  @extend %button;
 }
 
 .contact {
