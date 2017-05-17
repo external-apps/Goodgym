@@ -11,6 +11,21 @@
     saveButton.addEventListener('click', saveToDatabase);
   }
 
+  var loginButton = document.getElementsByClassName('login-button')[0];
+  if (loginButton) {
+    loginButton.addEventListener('click', handleLoginClick);
+  }
+
+  function handleLoginClick () {
+    var loginForm = document.getElementsByClassName('form-container__input')[0];
+    var runId = loginForm.value;
+    directToHomePage(runId);
+  }
+
+  function directToHomePage (runId) {
+    window.location.pathname = '/' + runId;
+  }
+
   function Task (tasks, runId) {
     this.runId = runId;
     this.task = tasks[0].value;

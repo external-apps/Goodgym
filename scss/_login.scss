@@ -1,6 +1,6 @@
 .login-container {
   @extend %main-container;
-  height: 80vh;
+  height: 85vh;
   display: flex;
   display: -webkit-flex;
   align-items: center;
@@ -13,6 +13,10 @@
 
 .login-header {
   @extend %header;
+}
+
+.login-header__title {
+  margin-top: 5px;
 }
 
 .login-button {
@@ -44,6 +48,14 @@
 
 .form-container__title {
   margin: 7px;
+}
+
+.login-logo {
+  @extend %goodgym-logo;
+  position: absolute;
+  width: 100px;
+  top: -15px;
+  left: 10px;
 }
 
 @media screen and (min-width: 500px){

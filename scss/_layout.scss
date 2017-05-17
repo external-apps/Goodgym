@@ -27,6 +27,7 @@ body {
   height: 41.5px;
   margin-left: 8px;
   margin-top: 10px;
+  cursor: pointer;
 
   &:focus {
     outline: none;
@@ -42,6 +43,11 @@ body {
   text-align: center;
   margin: 15px 0;
   width: 100%;
+}
+
+%goodgym-logo {
+  width: 150px;
+  margin-top: 25px;
 }
 
 // this need to go in the _qr.scss
