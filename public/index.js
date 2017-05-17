@@ -1,5 +1,6 @@
 (function () {
   'use strict';
+  var addedNode = '';
 
   var registerButton = document.getElementsByClassName('_yoti-verify-button')[0];
   if (registerButton) {
@@ -56,4 +57,26 @@
     };
     http.send(payload);
   }
+
+  var observer = new MutationObserver(function (mutation) {
+    if (!mutation[0].addedNodes[0]) { return; }
+    if (mutation[0].type === 'childList') {
+      const qrSvg = mutation[0].addedNodes[0].querySelector('#canvas').getAttribute('src');
+      addedNode = mutation[0].addedNodes[0];
+      createQR(qrSvg);
+      addedNode.remove();
+    }
+  });
+
+  var config = { attributes: true, childList: true, characterData: true };
+  var target = document.getElementsByClassName('qr-container')[0];
+  if (window.location.pathname.split('/')[1] === 'qr') {
+    observer.observe(target, config);
+  }
+
+  function createQR (qrSvg) {
+    var qr = document.getElementsByClassName('qr-image')[0];
+    qr.classList.remove('display-none');
+    qr.src = qrSvg;
+  };
 })();
