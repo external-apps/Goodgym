@@ -8,7 +8,7 @@ const postRun = (req, res) => {
       console.log(err);
       res.send('POST request not made!');
     } else {
-      console.log('body:', body);
+      // console.log('body:', body);
       res.send('run added to database');
     }
   });
