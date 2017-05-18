@@ -48,6 +48,6 @@ function computeTotalDistance (result) {
 }
 
 // This is aysnc
-setTimeout(function () {
-  console.log(directionsDisplay);
-}, 500);
+// setTimeout(function () {
+//   console.log(directionsDisplay);
+// }, 500);

@@ -28,13 +28,19 @@
   }
 
   function Task (tasks, runId) {
-    this.runId = runId;
+    this.mapDetails = directionsDisplay.directions;
     this.task = tasks[0].value;
     this.location = tasks[1].value;
     this.purpose = tasks[2].value;
     this.contact = tasks[3].value;
     this.risk = tasks[4].value;
+    this.runId = runId;
   }
+
+  // post this code into the database!
+  setTimeout(function () {
+    console.log(directionsDisplay.directions);
+  }, 500);
 
   function saveToDatabase () {
     var runId = window.location.pathname.slice(1);
