@@ -6,7 +6,9 @@ const path = require('path');
 const app = express();
 
 const hbs = exphbs.create({
-  defaultLayout: path.join(__dirname, '/templates/layout/main.hbs')
+  extname: 'hbs',
+  defaultLayout: path.join(__dirname, '/templates/layout/main.hbs'),
+  partialsDir: path.join(__dirname, '/templates/partials')
 });
 
 app.engine('hbs', hbs.engine);
