@@ -33,6 +33,11 @@
   }
 }
 
+.map-description {
+  margin-top: 4px;
+  font-family: $body-font;
+}
+
 .button-container {
   @extend %button-container;
 }
