@@ -1,0 +1,44 @@
+.qr-logo {
+  @extend %goodgym-logo;
+}
+
+.qr-container {
+  @extend %main-container;
+  height: 95vh;
+  display: flex;
+  display: -webkit-flex;
+  align-items: center;
+  -webkit-align-items: center;
+  flex-flow: column nowrap;
+  -webkit-flex-flow: column nowrap;
+  -webkit-justify-content: center;
+  justify-content: center;
+}
+
+.qr-header {
+  @extend %header;
+}
+
+.qr-header__title {
+  margin-top: 8px;
+  margin-bottom: 15px;
+}
+
+.qr-desciption {
+  font-family: $body-font;
+  font-size: 1.2rem;
+  max-width: 320px;
+  text-align: center;
+  padding: 0 10px;
+  margin-top: 20px;
+}
+
+.display-none {
+  display: none;
+}
+
+.qr-image {
+  margin-bottom: 30px;
+  width: 135px;
+  height: 135px;
+}
