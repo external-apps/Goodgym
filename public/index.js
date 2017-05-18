@@ -61,7 +61,7 @@
   var observer = new MutationObserver(function (mutation) {
     if (!mutation[0].addedNodes[0]) { return; }
     if (mutation[0].type === 'childList') {
-      const qrSvg = mutation[0].addedNodes[0].querySelector('#canvas').getAttribute('src');
+      var qrSvg = mutation[0].addedNodes[0].querySelector('#canvas').getAttribute('src');
       addedNode = mutation[0].addedNodes[0];
       createQR(qrSvg);
       addedNode.remove();
