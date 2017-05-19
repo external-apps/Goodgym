@@ -5,7 +5,6 @@ const home = (req, res) => {
   if (paramId !== 'favicon.ico') {
     getRun(paramId, (err, run) => {
       if (err) console.error(err);
-      console.log(run, 'run from home');
       res.render('home', run);
     });
   }
