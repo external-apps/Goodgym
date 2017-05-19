@@ -9,6 +9,7 @@
 
   var saveButton = document.getElementsByClassName('save-button')[0];
   if (saveButton) {
+    window.onload = getRun();
     saveButton.addEventListener('click', saveToDatabase);
   }
 
@@ -62,6 +63,39 @@
       }
     };
     http.send(payload);
+  }
+
+  function getRun () {
+    var data = {
+      runId: window.location.pathname
+    };
+    var url = 'https://localhost:3000/get-run' + data.runId;
+    var req = new XMLHttpRequest();
+
+    req.open('GET', url);
+    req.setRequestHeader('Content-type', 'application/json');
+    req.onload = function () {
+      if (req.status === 200) {
+        fillForm(JSON.parse(req.response));
+      } else {
+        new Error(req.statusText);
+      }
+    };
+    req.onerror = function () {
+      new Error('Network error');
+    };
+    req.send(JSON.stringify(data));
+  }
+
+  function fillForm (response) {
+    var data = response[0].run;
+    if (!data) return;
+    var textareas = [].slice.call(document.querySelectorAll('textarea'));
+    textareas.forEach(function (textarea) {
+      if (textarea.name in data) {
+        textarea.value = data[textarea.name];
+      }
+    });
   }
 
   var observer = new MutationObserver(function (mutation) {
