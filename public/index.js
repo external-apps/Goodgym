@@ -67,7 +67,6 @@
     var req = new XMLHttpRequest();
 
     req.open('GET', url);
-    req.setRequestHeader('Content-type', 'application/json');
     req.onload = function () {
       if (req.status === 200) {
         fillForm(JSON.parse(req.response));
@@ -78,12 +77,12 @@
     req.onerror = function () {
       new Error('Network error');
     };
-    req.send(JSON.stringify(data));
+    req.send();
   }
 
   function fillForm (response) {
+    if (!response[0]) return;
     var data = response[0].run;
-    if (!data) return;
     var textareas = [].slice.call(document.querySelectorAll('textarea'));
     textareas.forEach(function (textarea) {
       if (textarea.name in data) {
