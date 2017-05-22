@@ -29,7 +29,6 @@
   }
 
   function Task (tasks, runId, startPoint, endPoint, waypoints) {
-    console.log(waypoints);
     this.mapDetails = waypoints;
     this.startPoint = startPoint;
     this.endPoint = endPoint;
@@ -88,11 +87,8 @@
   }
 
   function fillForm (response) {
-    console.log(response[0].run);
-    var data = response[0].run;
+    var data = response.length === 0 ? '' : response[0].run;
     initMap(data);
-    if (!data) return;
-
     var textareas = [].slice.call(document.querySelectorAll('textarea'));
     textareas.forEach(function (textarea) {
       if (textarea.name in data) {
