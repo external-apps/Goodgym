@@ -28,7 +28,8 @@
     window.location.pathname = runId;
   }
 
-  function Task (tasks, runId, startPoint, endPoint) {
+  function Task (tasks, runId, startPoint, endPoint, waypoints) {
+    console.log(waypoints);
     this.mapDetails = waypoints;
     this.startPoint = startPoint;
     this.endpoint = endPoint;
@@ -45,7 +46,7 @@
     var taskInfoArray = [].slice.call(document.querySelectorAll('textarea'));
     var startPoint = 'Camberwell, London, UK';
     var endPoint = 'Peckham, London, UK';
-    var taskObj = new Task(taskInfoArray, runId, startPoint, endPoint);
+    var taskObj = new Task(taskInfoArray, runId, startPoint, endPoint, waypoints);
     httpPostRequest(taskObj);
   }
 
@@ -61,6 +62,7 @@
         console.log(http.responseText);
       }
     };
+    console.log(payload);
     http.send(payload);
   }
 
@@ -86,10 +88,9 @@
   }
 
   function fillForm (response) {
-    var mapData = response[0].run.mapDetails;
-    initMap(mapData);
-
+    // console.log(response[0].run);
     var data = response[0].run;
+    initMap(data);
     if (!data) return;
 
     var textareas = [].slice.call(document.querySelectorAll('textarea'));

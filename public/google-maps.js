@@ -30,10 +30,17 @@ function initMap (data) {
     }, 500);
   }
 
+  if (data) {
+    var startPoint = data.startPoint;
+    var endPoint = data.endpoint;
+  } else {
+    startPoint = 'lewisham, London, UK';
+    endPoint = 'greenwich, London, UK';
+  }
+
   // This is the function that we will need to run to render the map. directionsDisplay
-  // will either have to come from the database or the runId in the params
-  displayRoute('Camberwell, London, UK', 'Peckham, London, UK', directionsService,
-  directionsDisplay, waypoints);
+  // will either have to come from the database or the runId in the params]
+  displayRoute(startPoint, endPoint, directionsService, directionsDisplay, waypoints);
 }
 
 function displayRoute (origin, destination, service, display, waypoints) {
