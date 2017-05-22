@@ -28,8 +28,10 @@
     window.location.pathname = runId;
   }
 
-  function Task (tasks, runId) {
-    this.mapDetails = directionsDisplay.directions;
+  function Task (tasks, runId, startPoint, endPoint) {
+    this.mapDetails = waypoints;
+    this.startPoint = startPoint;
+    this.endpoint = endPoint;
     this.task = tasks[0].value;
     this.location = tasks[1].value;
     this.purpose = tasks[2].value;
@@ -38,15 +40,12 @@
     this.runId = runId;
   }
 
-  // post this code into the database!
-  setTimeout(function () {
-    console.log(directionsDisplay.directions);
-  }, 500);
-
   function saveToDatabase () {
     var runId = window.location.pathname.slice(1);
     var taskInfoArray = [].slice.call(document.querySelectorAll('textarea'));
-    var taskObj = new Task(taskInfoArray, runId);
+    var startPoint = 'Camberwell, London, UK';
+    var endPoint = 'Peckham, London, UK';
+    var taskObj = new Task(taskInfoArray, runId, startPoint, endPoint);
     httpPostRequest(taskObj);
   }
 
@@ -88,8 +87,9 @@
   }
 
   function fillForm (response) {
-    var data = response[0].run;
+    var data = response[0].run.mapDetails;
     if (!data) return;
+    initMap(data);
     var textareas = [].slice.call(document.querySelectorAll('textarea'));
     textareas.forEach(function (textarea) {
       if (textarea.name in data) {
