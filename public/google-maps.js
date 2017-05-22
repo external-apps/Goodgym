@@ -1,5 +1,5 @@
 var directionsDisplay = '';
-var waypoints = null;
+var waypoints = [];
 
 function initMap (data) {
   var startCity = {lat: 51.507368, lng: -0.128142};
@@ -32,29 +32,24 @@ function initMap (data) {
 
   if (data) {
     var startPoint = data.startPoint;
-    var endPoint = data.endpoint;
+    var endPoint = data.endPoint;
+    if (data.mapDetails){
+      waypoints = data.mapDetails;
+    }
   } else {
-    startPoint = 'lewisham, London, UK';
-    endPoint = 'greenwich, London, UK';
+    startPoint = 'brixton, London, UK';
+    endPoint = 'clapham, London, UK';
   }
 
-  // This is the function that we will need to run to render the map. directionsDisplay
-  // will either have to come from the database or the runId in the params]
   displayRoute(startPoint, endPoint, directionsService, directionsDisplay, waypoints);
 }
 
 function displayRoute (origin, destination, service, display, waypoints) {
-  console.log(waypoints);
-  if (waypoints) {
-    var lat = waypoints[0].location.lat;
-    var lon = waypoints[0].location.lng;
-    var lat2 = waypoints[1].location.lat;
-    var lon2 = waypoints[1].location.lng;
-    var points = [
-      { location: new google.maps.LatLng({lat: lat, lng: lon}) },
-      { location: new google.maps.LatLng({lat: lat2, lng: lon2}) }
-    ];
-    console.log({lat: lat, lng: lon});
+  var points = [];
+  if (waypoints.length > 0) {
+    waypoints.forEach(function (point) {
+      points.push({ location: new google.maps.LatLng({lat: point.location.lat, lng: point.location.lng}) });
+    });
   } else {
     points = [];
   };

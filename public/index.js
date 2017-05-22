@@ -32,7 +32,7 @@
     console.log(waypoints);
     this.mapDetails = waypoints;
     this.startPoint = startPoint;
-    this.endpoint = endPoint;
+    this.endPoint = endPoint;
     this.task = tasks[0].value;
     this.location = tasks[1].value;
     this.purpose = tasks[2].value;
@@ -44,8 +44,8 @@
   function saveToDatabase () {
     var runId = window.location.pathname.slice(1);
     var taskInfoArray = [].slice.call(document.querySelectorAll('textarea'));
-    var startPoint = 'Camberwell, London, UK';
-    var endPoint = 'Peckham, London, UK';
+    var startPoint = 'Camberwell, London, UK'; // This needs to come from the goodgym API
+    var endPoint = 'Peckham, London, UK'; // This needs to come from the goodgym api API
     var taskObj = new Task(taskInfoArray, runId, startPoint, endPoint, waypoints);
     httpPostRequest(taskObj);
   }
@@ -88,7 +88,7 @@
   }
 
   function fillForm (response) {
-    // console.log(response[0].run);
+    console.log(response[0].run);
     var data = response[0].run;
     initMap(data);
     if (!data) return;
