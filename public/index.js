@@ -72,7 +72,6 @@
     var req = new XMLHttpRequest();
 
     req.open('GET', url);
-    req.setRequestHeader('Content-type', 'application/json');
     req.onload = function () {
       if (req.status === 200) {
         fillForm(JSON.parse(req.response));
@@ -83,13 +82,16 @@
     req.onerror = function () {
       new Error('Network error');
     };
-    req.send(JSON.stringify(data));
+    req.send();
   }
 
   function fillForm (response) {
-    var data = response[0].run.mapDetails;
+    var mapData = response[0].run.mapDetails;
+    initMap(mapData);
+
+    var data = response[0].run;
     if (!data) return;
-    initMap(data);
+
     var textareas = [].slice.call(document.querySelectorAll('textarea'));
     textareas.forEach(function (textarea) {
       if (textarea.name in data) {
