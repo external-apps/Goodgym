@@ -1,6 +1,7 @@
 (function () {
   'use strict';
   var addedNode = '';
+  var waypointsFromDatabase = [];
 
   var registerButton = document.getElementsByClassName('_yoti-verify-button')[0];
   if (registerButton) {
@@ -43,9 +44,20 @@
   function saveToDatabase () {
     var runId = window.location.pathname.slice(1);
     var taskInfoArray = [].slice.call(document.querySelectorAll('textarea'));
+    // Take the points from the map pulled from database rather than the array which clears on page reload
+    // console.log(waypoints);
     var startPoint = 'Camberwell, London, UK'; // This needs to come from the goodgym API
     var endPoint = 'Peckham, London, UK'; // This needs to come from the goodgym api API
+    // add waypointsFromDatabase to waypoints here
+    // console.log(waypointsFromDatabase, waypoints);
+    waypointsFromDatabase.forEach(function (point) {
+      console.log('forEach running');
+      console.log(point);
+      waypoints.push(point);
+    });
+    console.log(waypoints);
     var taskObj = new Task(taskInfoArray, runId, startPoint, endPoint, waypoints);
+    // console.log('TASK Object:', taskObj);
     httpPostRequest(taskObj);
   }
 
@@ -54,14 +66,13 @@
     var url = '/post-run/:id';
     http.open('POST', url, true);
     http.setRequestHeader('Content-Type', 'application/json');
+    console.log(info);
     var payload = JSON.stringify(info);
-
     http.onreadystatechange = function () {
       if (http.readyState === 4 && http.status === 200) {
         console.log(http.responseText);
       }
     };
-    console.log(payload);
     http.send(payload);
   }
 
@@ -75,7 +86,10 @@
     req.open('GET', url);
     req.onload = function () {
       if (req.status === 200) {
-        fillForm(JSON.parse(req.response));
+        var data = JSON.parse(req.response);
+        waypointsFromDatabase = data[0].run.mapDetails;
+        // console.log(waypointsFromDatabase);
+        fillForm(data);
       } else {
         new Error(req.statusText);
       }
@@ -89,6 +103,7 @@
   function fillForm (response) {
     var data = response.length === 0 ? '' : response[0].run;
     initMap(data);
+
     var textareas = [].slice.call(document.querySelectorAll('textarea'));
     textareas.forEach(function (textarea) {
       if (textarea.name in data) {
