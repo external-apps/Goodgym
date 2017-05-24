@@ -21,13 +21,18 @@ const confirmation = (req, res) => {
   yotiClient.getActivityDetails(token).then((activityDetails) => {
     const userProfile = activityDetails.getUserProfile();
     res.render('confirmation', {
-      firstName: userProfile.givenNames,
-      lastName: userProfile.familyName
+      firstName: capitalise(userProfile.givenNames.split(' ')[0]),
+      lastName: capitalise(userProfile.familyName),
+      emailAddress: userProfile.emailAddress
     });
   }).catch((err) => {
     console.error(err);
   });
   console.log(token);
+};
+
+const capitalise = (text) => {
+  return text.slice(0, 1) + text.slice(1).toLowerCase();
 };
 
 module.exports = confirmation;
