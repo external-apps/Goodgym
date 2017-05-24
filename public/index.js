@@ -46,12 +46,14 @@
     this.purpose = tasks[2].value;
     this.contact = tasks[3].value;
     this.risk = tasks[4].value;
+    this.email = tasks[5].value;
   }
 
   function saveToDatabase () {
     var runId = window.location.pathname.slice(1);
     var taskInfoArray = [].slice.call(document.querySelectorAll('textarea'));
     var taskObj = new Task(taskInfoArray, runId);
+    console.log(taskObj);
     httpPostRequest(taskObj, '/post-run/:id');
   }
 
