@@ -1,0 +1,21 @@
+.confirmation-container {
+  @extend %main-container;
+}
+
+.confirmation-header {
+  @extend %header;
+}
+
+.confirmation-button {
+  @extend %button;
+  width: 250px;
+  margin: 0;
+}
+
+.confirmation-body {
+  text-align: center;
+}
+
+.titleCase {
+  text-transform: capitalize;
+}
