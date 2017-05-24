@@ -26,3 +26,6 @@ node-sass
 
 ### Linting:
 ESLint
+
+### Dependencies:
+nodemailer

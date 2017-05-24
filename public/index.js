@@ -18,6 +18,17 @@
     loginButton.addEventListener('click', handleLoginClick);
   }
 
+  var sendEmailButton = document.getElementsByClassName('send-email-button')[0];
+  if (sendEmailButton) {
+    sendEmailButton.addEventListener('click', function () {
+      var emailBody = {
+        emailAddress: document.getElementsByClassName('email-input')[0].value,
+        qrAddress: window.location.origin + '/qr' + window.location.pathname
+      };
+      httpPostRequest(emailBody, '/send-email/:id');
+    });
+  }
+
   function handleLoginClick () {
     var loginForm = document.getElementsByClassName('form-container__input')[0];
     var runId = loginForm.value;
@@ -41,12 +52,11 @@
     var runId = window.location.pathname.slice(1);
     var taskInfoArray = [].slice.call(document.querySelectorAll('textarea'));
     var taskObj = new Task(taskInfoArray, runId);
-    httpPostRequest(taskObj);
+    httpPostRequest(taskObj, '/post-run/:id');
   }
 
-  function httpPostRequest (info) {
+  function httpPostRequest (info, url) {
     var http = new XMLHttpRequest();
-    var url = '/post-run/:id';
     http.open('POST', url, true);
     http.setRequestHeader('Content-Type', 'application/json');
     var payload = JSON.stringify(info);
