@@ -1,5 +1,9 @@
 'use strict';
 
+const handlebars = require('handlebars');
+const fs = require('fs');
+const path = require('path');
+
 const nodemailer = require('nodemailer');
 require('env2')(`${__dirname}/../.env`);
 
@@ -12,16 +16,16 @@ const transporter = nodemailer.createTransport({
 });
 
 function sendMail (body, cb) {
-  console.log('body:', body);
-  var emailAddress = body.emailAddress;
-  var emailContent = composeEmailBody(body.qrAddress);
+  const emailTemplate = fs.readFileSync(path.join(__dirname, 'templates', 'views', 'email.hbs'), 'utf8');
+  const template = handlebars.compile(emailTemplate);
+  const emailContent = template({qrAddress: body.qrAddress});
 
   const mailOptions = {
     from: '"GoodGym" <goodgym1000@gmail.com>',
     subject: 'Your task sheet',
     text: 'task sheet',
     html: emailContent,
-    to: emailAddress
+    to: body.emailAddress
   };
 
   transporter.sendMail(mailOptions, (error, info) => {
@@ -30,12 +34,6 @@ function sendMail (body, cb) {
     }
     return cb(null, `Message ${info.messageId} sent: ${info.response}`);
   });
-}
-
-function composeEmailBody (content) {
-  return `<h2>
-            You can find sign-in your runners via QR code <a href="${content}">here!</a>
-          </h2>`;
 }
 
 module.exports = sendMail;
