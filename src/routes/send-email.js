@@ -1,4 +1,4 @@
-const sendEmailFunction = require('../send-email.js');
+const sendEmailFunction = require('../send-email');
 
 const sendEmail = (req, res) => {
   const body = req.body;
