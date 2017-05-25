@@ -10,18 +10,18 @@
     }
   }
 
-  var saveButton = document.getElementsByClassName('save-button')[0];
+  var saveButton = document.getElementsByClassName('button-container__save-button')[0];
   if (saveButton) {
     window.onload = getRun();
     saveButton.addEventListener('click', saveToDatabase);
   }
 
-  var loginButton = document.getElementsByClassName('login-button')[0];
+  var loginButton = document.getElementsByClassName('button-container__login-button')[0];
   if (loginButton) {
     loginButton.addEventListener('click', handleLoginClick);
   }
 
-  var backToQRButton = document.getElementsByClassName('confirmation-button')[0];
+  var backToQRButton = document.getElementsByClassName('button-container__confirmation-button')[0];
   if (backToQRButton) {
     backToQRButton.addEventListener('click', function () {
       window.location.pathname = '/qr/' + sessionStorage.run_id;
@@ -33,16 +33,16 @@
     var taskSheetLocation = window.location.origin + '/task-sheet/' + sessionStorage.run_id;
     httpPostRequest({
       taskSheetURL: taskSheetLocation,
-      firstName: document.getElementsByClassName('firstName')[0].innerText,
-      emailAddress: document.getElementsByClassName('emailAddress')[0].innerText
+      firstName: document.getElementsByClassName('confirmation-body__firstName')[0].innerText,
+      emailAddress: document.getElementsByClassName('confirmation-body__emailAddress')[0].innerText
     }, '/send-task-sheet/:id');
   }
 
-  var sendEmailButton = document.getElementsByClassName('send-email-button')[0];
+  var sendEmailButton = document.getElementsByClassName('button-container__send-email-button')[0];
   if (sendEmailButton) {
     sendEmailButton.addEventListener('click', function () {
       var emailBody = {
-        emailAddress: document.getElementsByClassName('email-input')[0].value,
+        emailAddress: document.getElementsByClassName('email-container__email-input')[0].value,
         qrAddress: window.location.origin + '/qr' + window.location.pathname
       };
       httpPostRequest(emailBody, '/send-qr-email/:id');
@@ -102,11 +102,11 @@
       if (req.status === 200) {
         fillForm(JSON.parse(req.response));
       } else {
-        new Error(req.statusText);
+        throw new Error(req.statusText);
       }
     };
     req.onerror = function () {
-      new Error('Network error');
+      throw new Error('Network error');
     };
     req.send();
   }

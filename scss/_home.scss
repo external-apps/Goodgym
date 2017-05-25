@@ -11,7 +11,7 @@
   @extend %header;
 }
 
-.home-title {
+.home-header__title {
   margin-top: 8px;
   margin-bottom: 15px;
   line-height: 60px;
@@ -37,12 +37,12 @@
   @extend %button-container;
 }
 
-.save-button,
-.send-email-button {
+.button-container__save-button,
+.button-container__send-email-button {
   @extend %button;
 }
 
-.send-email-button {
+.button-container__send-email-button {
   width: auto;
   padding: 0 15px;
 }
@@ -64,14 +64,12 @@
   clear: both;
 }
 
-.email {
+.email-container__email {
   height: 50px;
+}
 
-  h4 {
-    width: 100%;
-    display: inline-block;
-    padding: 5px 0;
-  }
+.email-container__email-input {
+  height: 40px;
 }
 
 .google-map {
@@ -87,21 +85,6 @@
 
 .home-logo {
   @extend %goodgym-logo;
-}
-
-textarea {
-  resize: none;
-  border: none;
-  font-size: 1rem;
-  width: 100%;
-  box-sizing: border-box;
-  height: 80%;
-  border-bottom-left-radius: 15px;
-  border-bottom-right-radius: 15px;
-
-  &:focus {
-    outline: none;
-  }
 }
 
 @media screen and (min-width: 768px){

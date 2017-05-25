@@ -15,11 +15,11 @@
   @extend %header;
 }
 
-.confirmation__title {
+.confirmation-header__title {
   margin-bottom: 5px;
 }
 
-.confirmation-button {
+.button-container__confirmation-button {
   @extend %button;
   width: 250px;
   margin: 5px 0;
