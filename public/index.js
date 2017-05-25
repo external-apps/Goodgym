@@ -4,7 +4,10 @@
 
   var registerButton = document.getElementsByClassName('_yoti-verify-button')[0];
   if (registerButton) {
-    registerButton.href = window.location.origin + '/qr/test';
+    registerButton.href = window.location.origin + '/qr' + window.location.pathname;
+    if (!sessionStorage.run_id) {
+      sessionStorage.setItem('run_id', window.location.pathname.split('/')[2]);
+    }
   }
 
   var saveButton = document.getElementsByClassName('save-button')[0];
@@ -16,6 +19,23 @@
   var loginButton = document.getElementsByClassName('login-button')[0];
   if (loginButton) {
     loginButton.addEventListener('click', handleLoginClick);
+  }
+
+  var backToQRButton = document.getElementsByClassName('confirmation-button')[0];
+  if (backToQRButton) {
+    backToQRButton.addEventListener('click', function () {
+      window.location.pathname = '/qr/test';
+    });
+  }
+
+  var confirmationPage = document.getElementsByClassName('confirmation-container')[0];
+  if (confirmationPage) {
+    var taskSheetLocation = window.location.origin + '/task-sheet/' + sessionStorage.run_id;
+    httpPostRequest({
+      taskSheetURL: taskSheetLocation,
+      firstName: document.getElementsByClassName('firstName')[0].innerText,
+      emailAddress: document.getElementsByClassName('emailAddress')[0].innerText
+    }, '/send-task-sheet/:id');
   }
 
   var sendEmailButton = document.getElementsByClassName('send-email-button')[0];

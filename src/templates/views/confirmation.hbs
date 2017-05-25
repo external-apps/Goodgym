@@ -1,3 +1,7 @@
+<a href="https://www.goodgym.org/">
+  <img src="../../goodgym-logo.png" alt="GoodGym logo" class="confirmation-logo">
+</a>
+
 <div class="confirmation-container">
 
   <header class="confirmation-header">
@@ -5,8 +9,9 @@
   </header>
 
   <div class="confirmation-body">
-    <h3>{{firstName}} {{lastName}} you are signed in on the run.</h3>
-    <h3>We have sent your task sheet to {{ emailAddress }}</h3>
+    <h3><span class="firstName">{{ firstName }}</span> <span class="lastName">{{ lastName }}</span>
+      you are signed in on the run.</h3>
+    <h3>We have sent your task sheet to <span class="emailAddress">{{ emailAddress }}</span></h3>
   </div>
 
   <div class="button-container">

@@ -1,21 +1,39 @@
 .confirmation-container {
   @extend %main-container;
+  height: 90vh;
+  display: flex;
+  display: -webkit-flex;
+  align-items: center;
+  -webkit-align-items: center;
+  flex-flow: column nowrap;
+  -webkit-flex-flow: column nowrap;
+  -webkit-justify-content: center;
+  justify-content: center;
 }
 
 .confirmation-header {
   @extend %header;
 }
 
+.confirmation__title {
+  margin-bottom: 5px;
+}
+
 .confirmation-button {
   @extend %button;
   width: 250px;
-  margin: 0;
+  margin: 5px 0;
 }
 
 .confirmation-body {
   text-align: center;
+  font-family: $body-font;
 }
 
-.titleCase {
-  text-transform: capitalize;
+.confirmation-logo {
+  @extend %goodgym-logo;
+  position: absolute;
+  width: 100px;
+  top: -15px;
+  left: 10px;
 }
