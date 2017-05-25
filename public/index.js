@@ -73,7 +73,6 @@
     var runId = window.location.pathname.slice(1);
     var taskInfoArray = [].slice.call(document.querySelectorAll('textarea'));
     var taskObj = new Task(taskInfoArray, runId);
-    console.log(taskObj);
     httpPostRequest(taskObj, '/post-run/:id');
   }
 
