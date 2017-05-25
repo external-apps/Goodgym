@@ -45,7 +45,7 @@
         emailAddress: document.getElementsByClassName('email-input')[0].value,
         qrAddress: window.location.origin + '/qr' + window.location.pathname
       };
-      httpPostRequest(emailBody, '/send-email/:id');
+      httpPostRequest(emailBody, '/send-qr-email/:id');
     });
   }
 

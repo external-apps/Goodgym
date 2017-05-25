@@ -7,7 +7,7 @@ const qr = require('./routes/qr');
 const tasksheet = require('./routes/tasksheet');
 const getRun = require('./routes/get-run');
 const postRun = require('./routes/post-run');
-const sendEmail = require('./routes/send-email');
+const sendEmail = require('./routes/send-qr-email');
 const confirmation = require('./routes/confirmation');
 const sendTaskSheet = require('./routes/send-task-sheet');
 
@@ -18,7 +18,7 @@ router.get('/task-sheet/:id', tasksheet);
 router.get('/get-run/:id', getRun);
 router.get('/confirmation/:id', confirmation);
 router.post('/post-run/:id', postRun);
-router.post('/send-email/:id', sendEmail);
+router.post('/send-qr-email/:id', sendEmail);
 router.post('/send-task-sheet/:id', sendTaskSheet);
 
 module.exports = router;

@@ -16,11 +16,6 @@ const transporter = nodemailer.createTransport({
 });
 
 function sendTaskSheet (body, cb) {
-  // The tasksheet.js route needs to house the information from the tasksheet (but non editable)
-  // in this email we need to send a link to this task sheet, the run_id is needed so that we can
-  // show the user the correct tasksheet. The tasksheet route needs to do a get request to get the
-  // correct information to be templated in.
-
   const emailTemplate = fs.readFileSync(path.join(__dirname, 'templates', 'views', 'task-sheet-email.hbs'), 'utf8');
   const template = handlebars.compile(emailTemplate);
   const emailContent = template({

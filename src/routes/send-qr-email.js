@@ -1,6 +1,6 @@
-const sendEmailFunction = require('../send-email');
+const sendEmailFunction = require('../send-qr-email');
 
-const sendEmail = (req, res) => {
+const sendQREmail = (req, res) => {
   const body = req.body;
   sendEmailFunction(body, (err, payload) => {
     if (err) {
@@ -14,4 +14,4 @@ const sendEmail = (req, res) => {
   });
 };
 
-module.exports = sendEmail;
+module.exports = sendQREmail;
