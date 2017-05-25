@@ -18,7 +18,14 @@
 
   var loginButton = document.getElementsByClassName('button-container__login-button')[0];
   if (loginButton) {
+    var formInput = document.getElementsByClassName('form-container__input')[0];
     loginButton.addEventListener('click', handleLoginClick);
+    formInput.addEventListener('keypress', function (event) {
+      if (event.keyCode === 13 || event.which === 13) {
+        event.preventDefault();
+        handleLoginClick();
+      }
+    });
   }
 
   var backToQRButton = document.getElementsByClassName('button-container__confirmation-button')[0];
