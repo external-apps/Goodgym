@@ -1,1 +1,44 @@
-<h1>TASK SHEET HERE</h1>
+<div class="tasksheet-container">
+
+  <header class="tasksheet-header">
+    <img src="../../goodgym-logo.png" alt="GoodGym logo" class="tasksheet-logo">
+    <h1 class="tasksheet-title">Task Sheet</h1>
+  </header>
+
+  <div class="col-container">
+    <div class="col-1">
+      <div class="task form">
+        <h4>Task</h4>
+        <textarea name="task">{{ data.name }} {{ data.strapline }}</textarea>
+      </div>
+
+      <div class="location form">
+        <h4>Location</h4>
+        <textarea name="location">{{ data.start_point }}</textarea>
+      </div>
+
+      <div class="purpose form">
+        <h4>Purpose</h4>
+        <textarea name="purpose">{{ data.description }}</textarea>
+      </div>
+    </div>
+
+    <div class="col-2">
+      <div class="map form">
+        <h4>Map</h4>
+        <div class="google-map">
+        </div>
+      </div>
+
+      <div class="contact form">
+        <h4>Contact</h4>
+        <textarea name="contact"></textarea>
+      </div>
+
+      <div class="risks form">
+        <h4>Risk</h4>
+        <textarea name="risk"></textarea>
+      </div>
+    </div>
+  </div>
+</div>

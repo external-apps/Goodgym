@@ -28,7 +28,6 @@ const confirmation = (req, res) => {
   }).catch((err) => {
     console.error(err);
   });
-  console.log(token);
 };
 
 const capitalise = (text) => {
