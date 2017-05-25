@@ -5,7 +5,7 @@
   var registerButton = document.getElementsByClassName('_yoti-verify-button')[0];
   if (registerButton) {
     registerButton.href = window.location.origin + '/qr' + window.location.pathname;
-    if (!sessionStorage.run_id) {
+    if (!sessionStorage.run_id || sessionStorage.run_id === undefined) {
       sessionStorage.setItem('run_id', window.location.pathname.split('/')[2]);
     }
   }
@@ -24,7 +24,7 @@
   var backToQRButton = document.getElementsByClassName('confirmation-button')[0];
   if (backToQRButton) {
     backToQRButton.addEventListener('click', function () {
-      window.location.pathname = '/qr/test';
+      window.location.pathname = '/qr/' + sessionStorage.run_id;
     });
   }
 
