@@ -8,11 +8,11 @@ April 2017 - Prototype app consuming Yoti
 ### Framework:
 Express
 
-### Templating:
-Handlebars (express-handlebars)
-
 ### Database:
 MongoDB
+
+### Templating:
+Handlebars (express-handlebars)
 
 ### Testing:
 Chai <br>
