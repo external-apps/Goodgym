@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "April 2017 - Prototype app consuming Yoti",
   "main": "index.js",
+  "engines": {
+    "node": "6.10.3"
+  },
   "scripts": {
     "start": "node src/server-start.js",
     "devStart": "./bin/dev-start",
