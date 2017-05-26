@@ -5,12 +5,13 @@ const path = require('path');
 
 const key = fs.readFileSync(path.join(__dirname, '/keys/key.pem'));
 const cert = fs.readFileSync(path.join(__dirname, '/keys/cert.pem'));
+const port = process.env.PORT || 3000;
 
 if (!module.parent) {
   https.createServer({
     key: key,
     cert: cert
-  }, server).listen(8000, () => {
-    console.log('Our app listening on port 3000!');
+  }, server).listen(port, () => {
+    console.log('Listening on port ' + port);
   });
 }
