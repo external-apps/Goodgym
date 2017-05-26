@@ -4,4 +4,4 @@ node_modules
 npm-debug.log
 .env
 bin/npm.debug.log
-.public/css/main.css
+public/css/main.css
