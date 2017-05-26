@@ -10,7 +10,7 @@ if (!module.parent) {
   https.createServer({
     key: key,
     cert: cert
-  }, server).listen(3000, () => {
+  }, server).listen(8000, () => {
     console.log('Our app listening on port 3000!');
   });
 }
