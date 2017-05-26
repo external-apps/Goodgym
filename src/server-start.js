@@ -1,11 +1,14 @@
 const server = require('./server.js');
 const https = require('https');
+const http = require('http');
 const fs = require('fs');
 const path = require('path');
 
 const key = fs.readFileSync(path.join(__dirname, '/keys/key.pem'));
 const cert = fs.readFileSync(path.join(__dirname, '/keys/cert.pem'));
 const port = process.env.PORT || 3000;
+
+http.createServer(server);
 
 if (!module.parent) {
   https.createServer({
