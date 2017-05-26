@@ -5,6 +5,10 @@
   var registerButton = document.getElementsByClassName('_yoti-verify-button')[0];
   if (registerButton) {
     registerButton.href = window.location.origin + '/qr' + window.location.pathname;
+  }
+
+  var qrContainer = document.getElementsByClassName('qr-container')[0];
+  if (qrContainer) {
     if (!sessionStorage.run_id || sessionStorage.run_id === undefined) {
       sessionStorage.setItem('run_id', window.location.pathname.split('/')[2]);
     }
@@ -101,7 +105,7 @@
     var data = {
       runId: window.location.pathname
     };
-    var url = 'https://localhost:3000/get-run' + data.runId;
+    var url = window.location.origin + '/get-run' + data.runId;
     var req = new XMLHttpRequest();
 
     req.open('GET', url);
