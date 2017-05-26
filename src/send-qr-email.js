@@ -16,7 +16,7 @@ const transporter = nodemailer.createTransport({
 });
 
 function sendMail (body, cb) {
-  const emailTemplate = fs.readFileSync(path.join(__dirname, 'templates', 'views', 'email.hbs'), 'utf8');
+  const emailTemplate = fs.readFileSync(path.join(__dirname, 'templates', 'views', 'qr-email.hbs'), 'utf8');
   const template = handlebars.compile(emailTemplate);
   const emailContent = template({qrAddress: body.qrAddress});
 

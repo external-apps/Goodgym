@@ -7,7 +7,8 @@ const updateRun = (inputRun) => {
       'run.location': inputRun.location,
       'run.purpose': inputRun.purpose,
       'run.contact': inputRun.contact,
-      'run.risk': inputRun.risk
+      'run.risk': inputRun.risk,
+      'run.email': inputRun.email
     }
   };
 
