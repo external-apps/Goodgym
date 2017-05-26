@@ -1,4 +1,3 @@
-const fs = require('fs');
 require('env2')(`${__dirname}/../../.env`);
 
 const YotiClient = require('yoti-node-sdk');
