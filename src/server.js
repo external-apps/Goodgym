@@ -1,3 +1,4 @@
+require('env2')(`${__dirname}/../.env`);
 const express = require('express');
 const exphbs = require('express-handlebars');
 const bodyParser = require('body-parser');

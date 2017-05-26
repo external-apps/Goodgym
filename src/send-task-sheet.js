@@ -3,9 +3,7 @@
 const handlebars = require('handlebars');
 const fs = require('fs');
 const path = require('path');
-
 const nodemailer = require('nodemailer');
-require('env2')(`${__dirname}/../.env`);
 
 const transporter = nodemailer.createTransport({
   service: 'gmail',
