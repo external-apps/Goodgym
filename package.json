@@ -4,7 +4,7 @@
   "description": "April 2017 - Prototype app consuming Yoti",
   "main": "index.js",
   "scripts": {
-    "start": "./bin/start",
+    "start": "node src/server-start.js",
     "devStart": "./bin/dev-start",
     "test": "./bin/test",
     "buildCss": "./bin/build-css",
