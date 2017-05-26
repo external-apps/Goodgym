@@ -5,6 +5,10 @@
   var registerButton = document.getElementsByClassName('_yoti-verify-button')[0];
   if (registerButton) {
     registerButton.href = window.location.origin + '/qr' + window.location.pathname;
+  }
+
+  var qrContainer = document.getElementsByClassName('qr-container')[0];
+  if (qrContainer) {
     if (!sessionStorage.run_id || sessionStorage.run_id === undefined) {
       sessionStorage.setItem('run_id', window.location.pathname.split('/')[2]);
     }
