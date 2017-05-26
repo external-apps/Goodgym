@@ -11,6 +11,7 @@ const postRun = require('./routes/post-run');
 const sendEmail = require('./routes/send-qr-email');
 const sendTaskSheet = require('./routes/send-task-sheet');
 
+router.get('/', login);
 router.get('/login', login);
 router.get('/confirmation', confirmation);
 router.get('/:id', home);

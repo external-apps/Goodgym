@@ -101,7 +101,7 @@
     var data = {
       runId: window.location.pathname
     };
-    var url = 'https://localhost:3000/get-run' + data.runId;
+    var url = 'http://localhost:3000/get-run' + data.runId;
     var req = new XMLHttpRequest();
 
     req.open('GET', url);
