@@ -2,13 +2,13 @@ const express = require('express');
 const router = express.Router();
 
 const login = require('./routes/login');
+const confirmation = require('./routes/confirmation');
 const home = require('./routes/home');
 const qr = require('./routes/qr');
 const tasksheet = require('./routes/tasksheet');
 const getRun = require('./routes/get-run');
 const postRun = require('./routes/post-run');
 const sendEmail = require('./routes/send-qr-email');
-const confirmation = require('./routes/confirmation');
 const sendTaskSheet = require('./routes/send-task-sheet');
 
 router.get('/login', login);
