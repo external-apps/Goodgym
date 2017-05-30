@@ -52,6 +52,9 @@
   var sendEmailButton = document.getElementsByClassName('button-container__send-email-button')[0];
   if (sendEmailButton) {
     sendEmailButton.addEventListener('click', function () {
+      triggerVerification(document.querySelector('.button-container__send-email-button'),
+        document.querySelector('.button-container__qr-verification-button')
+      );
       var emailBody = {
         emailAddress: document.getElementsByClassName('email-container__email-input')[0].value,
         qrAddress: window.location.origin + '/qr' + window.location.pathname
@@ -85,7 +88,9 @@
     var taskInfoArray = [].slice.call(document.querySelectorAll('textarea'));
     var taskObj = new Task(taskInfoArray, runId);
     httpPostRequest(taskObj, '/post-run/:id');
-    saveVerification();
+    triggerVerification(document.querySelector('.button-container__save-button'),
+      document.querySelector('.button-container__save-verification-button')
+    );
   }
 
   function httpPostRequest (info, url) {
@@ -156,20 +161,20 @@
     qr.src = qrSvg;
   };
 
-  function saveVerification () {
-    var verifiedButton = document.querySelector('.button-container__verification-button');
+  function triggerVerification (element, verifiedButton) {
     var checkmark = document.querySelector('.checkmark');
     checkmark.style.visibility = 'hidden';
     verifiedButton.classList.remove('hidden');
-    saveButton.classList.add('hidden');
+    element.classList.add('hidden');
     animateCheckmark();
 
     setTimeout(function () {
       checkmark.style.visibility = 'visible';
     }, 200);
+
     setTimeout(function () {
       verifiedButton.classList.add('hidden');
-      saveButton.classList.remove('hidden');
+      element.classList.remove('hidden');
     }, 1000);
   }
 
