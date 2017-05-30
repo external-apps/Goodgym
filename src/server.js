@@ -18,7 +18,7 @@ app.set('views', path.join(__dirname, '/templates/views'));
 
 app.use(bodyParser());
 app.use(cookieParser('shhhh, very secret'));
-app.use(session({ secret: 'shhsecret' }));
+app.use(session({secret: 'shhsecret', resave: true, saveUninitialized: false}));
 app.use(express.static('public'));
 app.use('/', routes);
 

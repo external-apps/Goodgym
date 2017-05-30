@@ -16,8 +16,8 @@ const postLogin = (req, res) => {
       return res.status(404).send('You need to be logged in to see this page');
     }
     session.admin = admin;
-    console.log(session.admin, 'session.admin');
     return res.status(200).send('Hello admin!');
+    // res.redirect('/home');
   });
 };
 
