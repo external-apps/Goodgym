@@ -1,4 +1,4 @@
-const getRun = require('./getRunFromGoodGym');
+const getRun = require('../helpers/get-run-from-goodgym.js');
 
 const taskSheet = (req, res) => {
   const paramId = req.params.id;

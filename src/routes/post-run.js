@@ -1,5 +1,4 @@
 const addToDatabase = require('../database/db-add-run');
-console.log(addToDatabase);
 
 const postRun = (req, res) => {
   const body = req.body;
