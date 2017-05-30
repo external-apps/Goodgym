@@ -65,7 +65,7 @@
     var password = document.getElementsByClassName('form-container__input')[1].value;
     var runId = document.getElementsByClassName('form-container__input')[2].value;
     directToHomePage(runId);
-    httpPostRequest({username: username, password: password}, 'https://localhost:3000/login');
+    httpPostRequest({username: username, password: password}, '/login');
   }
 
   function directToHomePage (runId) {

@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 const login = require('./routes/login');
+const postLogin = require('./routes/post-login');
 const confirmation = require('./routes/confirmation');
 const home = require('./routes/home');
 const qr = require('./routes/qr');
@@ -13,6 +14,7 @@ const sendTaskSheet = require('./routes/send-task-sheet');
 
 router.get('/', login);
 router.get('/login', login);
+router.post('/login', postLogin);
 router.get('/confirmation', confirmation);
 router.get('/:id', home);
 router.get('/qr/:id', qr);
