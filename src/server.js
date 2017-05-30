@@ -2,6 +2,7 @@ const express = require('express');
 const exphbs = require('express-handlebars');
 const session = require('express-session');
 const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
 const routes = require('./routes');
 const path = require('path');
 const app = express();
@@ -16,6 +17,7 @@ app.set('view engine', 'hbs');
 app.set('views', path.join(__dirname, '/templates/views'));
 
 app.use(bodyParser());
+app.use(cookieParser('shhhh, very secret'));
 app.use(session({ secret: 'shhsecret' }));
 app.use(express.static('public'));
 app.use('/', routes);
