@@ -5,7 +5,7 @@ const getRunFromGoodGym = (paramId, cb) => {
     if (err) return cb(err);
     if (res.statusCode === 200) {
       var runs = JSON.parse(body).items;
-      var run = runs.filter(run => { return run.id === +paramId; });
+      var run = runs.filter(run => run.id === +paramId);
       if (run.length > 0) {
         return cb(null, run);
       } else {
