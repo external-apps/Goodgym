@@ -11,6 +11,8 @@ const getRunFromGoodGym = (paramId, cb) => {
       } else {
         return cb(new Error('No run found in database'));
       }
+    } else {
+      return cb(new Error(`Server error: ${res.statusCode}`));
     }
   });
 };

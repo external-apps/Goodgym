@@ -6,7 +6,7 @@ const home = (req, res) => {
     getRun(paramId, (err, run) => {
       if (err) {
         console.error(err);
-        res.render('error', null);
+        res.render('error', { error: 'No run found in our database!' });
         return;
       }
       res.render('home', run);

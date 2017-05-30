@@ -13,7 +13,7 @@ if (!SDK_ID) {
 const confirmation = (req, res) => {
   const token = req.query.token;
   if (!token) {
-    res.status(500).send('No yoti token provided');
+    res.render('error', { error: 'No yoti token provided' });
     return;
   }
   yotiClient.getActivityDetails(token).then((activityDetails) => {
@@ -24,7 +24,7 @@ const confirmation = (req, res) => {
       emailAddress: userProfile.emailAddress
     });
   }).catch((err) => {
-    res.status(500).send(err);
+    res.render('error', { error: err });
   });
 };
 
