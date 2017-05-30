@@ -61,9 +61,11 @@
   }
 
   function handleLoginClick () {
-    var loginForm = document.getElementsByClassName('form-container__input')[0];
-    var runId = loginForm.value;
+    var username = document.getElementsByClassName('form-container__input')[0].value;
+    var password = document.getElementsByClassName('form-container__input')[1].value;
+    var runId = document.getElementsByClassName('form-container__input')[2].value;
     directToHomePage(runId);
+    httpPostRequest({username: username, password: password}, 'https://localhost:3000/login');
   }
 
   function directToHomePage (runId) {
