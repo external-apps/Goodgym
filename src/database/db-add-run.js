@@ -1,4 +1,4 @@
-const GoodGymDB = require('./db-connection');
+const { GoodGymDB } = require('./db-connection');
 const findOneRun = require('./db-find-one');
 const updateRun = require('./db-update-run');
 

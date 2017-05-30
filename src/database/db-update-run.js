@@ -1,4 +1,4 @@
-const GoodGymDB = require('./db-connection');
+const { GoodGymDB } = require('./db-connection');
 
 const updateRun = (inputRun) => {
   const updateOption = {
