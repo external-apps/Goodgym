@@ -85,6 +85,7 @@
     var taskInfoArray = [].slice.call(document.querySelectorAll('textarea'));
     var taskObj = new Task(taskInfoArray, runId);
     httpPostRequest(taskObj, '/post-run/:id');
+    saveVerification();
   }
 
   function httpPostRequest (info, url) {
@@ -154,4 +155,33 @@
     qr.classList.remove('display-none');
     qr.src = qrSvg;
   };
+
+  function saveVerification () {
+    var verifiedButton = document.querySelector('.button-container__verification-button');
+    var checkmark = document.querySelector('.checkmark');
+    checkmark.style.visibility = 'hidden';
+    verifiedButton.classList.remove('hidden');
+    saveButton.classList.add('hidden');
+    animateCheckmark();
+
+    setTimeout(function () {
+      checkmark.style.visibility = 'visible';
+    }, 200);
+    setTimeout(function () {
+      verifiedButton.classList.add('hidden');
+      saveButton.classList.remove('hidden');
+    }, 1000);
+  }
+
+  function animateCheckmark () {
+    anime({
+      targets: '#checkmark path',
+      strokeDashoffset: [anime.setDashoffset, 0],
+      easing: 'easeInOutSine',
+      opacity: {
+        value: 1,
+        duration: 100
+      }
+    });
+  }
 })();

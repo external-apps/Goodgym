@@ -38,8 +38,23 @@
 }
 
 .button-container__save-button,
-.button-container__send-email-button {
+.button-container__send-email-button,
+.button-container__verification-button {
   @extend %button;
+}
+
+.hidden {
+  display: none;
+}
+
+.checkmark {
+  fill: none;
+  stroke: black;
+  stroke-width: 3.5;
+  stroke-miterlimit: 10;
+  height: 24px;
+  height: 21px;
+  transform: translate(0, 3px);
 }
 
 .button-container__send-email-button {
