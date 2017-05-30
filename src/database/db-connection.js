@@ -27,4 +27,14 @@ const GoodGymSchema = new Schema({
 
 const GoodGymDB = mongoose.model('GoodGymDB', GoodGymSchema);
 
-module.exports = GoodGymDB;
+const adminSchema = new Schema({
+  username: { type: String, required: true, unique: true },
+  password: { type: String, required: true }
+});
+
+const Admin = mongoose.model('Admin', adminSchema);
+
+module.exports = {
+  GoodGymDB,
+  Admin
+};
