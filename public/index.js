@@ -52,8 +52,10 @@
   var sendEmailButton = document.getElementsByClassName('button-container__send-email-button')[0];
   if (sendEmailButton) {
     sendEmailButton.addEventListener('click', function () {
-      triggerVerification(document.querySelector('.button-container__send-email-button'),
-        document.querySelector('.button-container__qr-verification-button')
+      triggerVerification(
+        document.querySelector('.button-container__send-email-button'),
+        document.querySelector('.button-container__qr-verification-button'),
+        document.getElementsByClassName('checkmark')[1]
       );
       var emailBody = {
         emailAddress: document.getElementsByClassName('email-container__email-input')[0].value,
@@ -88,8 +90,10 @@
     var taskInfoArray = [].slice.call(document.querySelectorAll('textarea'));
     var taskObj = new Task(taskInfoArray, runId);
     httpPostRequest(taskObj, '/post-run/:id');
-    triggerVerification(document.querySelector('.button-container__save-button'),
-      document.querySelector('.button-container__save-verification-button')
+    triggerVerification(
+      document.querySelector('.button-container__save-button'),
+      document.querySelector('.button-container__save-verification-button'),
+      document.getElementsByClassName('checkmark')[0]
     );
   }
 
@@ -161,21 +165,22 @@
     qr.src = qrSvg;
   };
 
-  function triggerVerification (element, verifiedButton) {
-    var checkmark = document.querySelector('.checkmark');
+  function triggerVerification (element, verifiedButton, checkmark) {
     checkmark.style.visibility = 'hidden';
     verifiedButton.classList.remove('hidden');
     element.classList.add('hidden');
-    animateCheckmark();
+    setTimeout(function () {
+      animateCheckmark();
+    }, 100);
 
     setTimeout(function () {
       checkmark.style.visibility = 'visible';
-    }, 200);
+    }, 250);
 
     setTimeout(function () {
       verifiedButton.classList.add('hidden');
       element.classList.remove('hidden');
-    }, 1000);
+    }, 1250);
   }
 
   function animateCheckmark () {

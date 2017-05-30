@@ -39,7 +39,7 @@
 
 .button-container__save-button,
 .button-container__send-email-button,
-.button-container__verification-button,
+.button-container__save-verification-button,
 .button-container__qr-verification-button {
   @extend %button;
 }
@@ -53,13 +53,13 @@
   stroke: black;
   stroke-width: 3.5;
   stroke-miterlimit: 10;
-  height: 24px;
-  height: 21px;
+  height: 20px;
   transform: translate(0, 3px);
 }
 
-.button-container__send-email-button {
-  width: auto;
+.button-container__send-email-button,
+.button-container__qr-verification-button {
+  width: 175px;
   padding: 0 15px;
 }
 
