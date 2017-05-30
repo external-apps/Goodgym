@@ -14,7 +14,7 @@
 
       <div class="location form">
         <h4>Location</h4>
-        <textarea name="location">{{ data.start_point }}</textarea>
+        <textarea name="location">{{ data.location.streetAddress }}, {{ data.location.addressLocality }}, {{ data.location.postalCode }} </textarea>
       </div>
 
       <div class="purpose form">
@@ -45,7 +45,7 @@
   <div class="email-container">
     <div class="email-container__email form">
       <h4>Trainer Email Address</h4>
-      <textarea class="email-container__email-input" name="email">{{ data.email }}</textarea>
+      <textarea class="email-container__email-input" name="email">{{ data.leader.email }}</textarea>
     </div>
   </div>
 
