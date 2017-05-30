@@ -5,14 +5,11 @@ const getRunFromGoodGym = (paramId, cb) => {
     if (err) return cb(err);
     if (res.statusCode === 200) {
       var runs = JSON.parse(body).items;
-      if (!runs.find(run => { return run.id === +paramId; })) {
-        return cb(new Error('No run found in database'));
+      var run = runs.filter(run => { return run.id === +paramId; });
+      if (run.length > 0) {
+        return cb(null, run);
       } else {
-        runs.forEach(run => {
-          if (run.id === +paramId) {
-            return cb(null, run);
-          }
-        });
+        return cb(new Error('No run found in database'));
       }
     }
   });
