@@ -3,6 +3,8 @@ const exphbs = require('express-handlebars');
 const session = require('express-session');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
+const passport = require('passport');
+const localStrategy = require('passport-local').Strategy;
 const routes = require('./routes');
 const path = require('path');
 const app = express();
@@ -19,6 +21,10 @@ app.set('views', path.join(__dirname, '/templates/views'));
 app.use(bodyParser());
 app.use(cookieParser('shhhh, very secret'));
 app.use(session({secret: 'shhsecret', resave: true, saveUninitialized: false}));
+
+app.use(passport.initialize());
+app.use(passport.session());
+
 app.use(express.static('public'));
 app.use('/', routes);
 

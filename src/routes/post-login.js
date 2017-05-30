@@ -21,4 +21,7 @@ const postLogin = (req, res) => {
   });
 };
 
+// app.post('/login', passport.authenticate('local', { successRedirect: '/home',
+//                                                     failureRedirect: '/' }));
+
 module.exports = postLogin;
