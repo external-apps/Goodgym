@@ -1,20 +1,18 @@
-const fs = require('fs');
 require('env2')(`${__dirname}/../../.env`);
-
-const YotiClient = require('yoti-node-sdk');
 const SDK_ID = process.env.CLIENT_SDK_ID;
 const PEM = process.env.SECURITY_PEM;
 
-let yotiClient = new YotiClient(SDK_ID, PEM);
-
 if (!SDK_ID) {
-  console.log('Enviroment variable CLIENT_SDK_ID must be set.');
+  throw new Error('Enviroment variable CLIENT_SDK_ID must be set.');
 }
+
+const YotiClient = require('yoti-node-sdk');
+let yotiClient = new YotiClient(SDK_ID, PEM);
 
 const confirmation = (req, res) => {
   const token = req.query.token;
   if (!token) {
-    res.status(500).send('No yoti token provided');
+    res.render('error', { error: 'No yoti token provided' });
     return;
   }
   yotiClient.getActivityDetails(token).then((activityDetails) => {
@@ -25,7 +23,7 @@ const confirmation = (req, res) => {
       emailAddress: userProfile.emailAddress
     });
   }).catch((err) => {
-    console.error(err);
+    res.render('error', { error: err });
   });
 };
 
