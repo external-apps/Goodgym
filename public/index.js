@@ -71,9 +71,9 @@
     window.location.pathname = runId;
   }
 
-  function Task (tasks, runId, startPoint, endPoint, waypoints) {
+  function Task (tasks, runId, waypoints, endPoint) {
     this.mapDetails = waypoints;
-    this.startPoint = startPoint;
+    this.startPoint = tasks[1].value;
     this.endPoint = endPoint;
     this.task = tasks[0].value;
     this.location = tasks[1].value;
@@ -88,9 +88,6 @@
     var runId = window.location.pathname.slice(1);
     var taskInfoArray = [].slice.call(document.querySelectorAll('textarea'));
     // Take the points from the map pulled from database rather than the array which clears on page reload
-    // console.log(waypoints);
-    var startPoint = 'Camberwell, London, UK'; // This needs to come from the goodgym API
-    var endPoint = 'Peckham, London, UK'; // This needs to come from the goodgym api API
     // add waypointsFromDatabase to waypoints here
     // console.log(waypointsFromDatabase, waypoints);
     waypointsFromDatabase.forEach(function (point) {
@@ -99,7 +96,7 @@
       waypoints.push(point);
     });
     console.log(waypoints);
-    var taskObj = new Task(taskInfoArray, runId, startPoint, endPoint, waypoints);
+    var taskObj = new Task(taskInfoArray, runId, waypoints, destination);
     httpPostRequest(taskObj, '/post-run/:id');
   }
 
@@ -128,8 +125,14 @@
         var data = JSON.parse(req.response);
         // waypointsFromDatabase = data[0].run.mapDetails;
         // console.log(waypointsFromDatabase);
-        initMap(data);
-        fillForm(data);
+        // var endPointFromDatabase = data[0].run.endPoint;
+        if (data.length > 0) {
+          initMap(data);
+          fillForm(data);
+        } else {
+          var locationInfo = document.getElementsByClassName('location-info')[0].value;
+          initMap([{run: { startPoint: locationInfo }}]);
+        }
       } else {
         throw new Error(req.statusText);
       }
@@ -142,8 +145,6 @@
 
   function fillForm (response) {
     var data = response.length === 0 ? '' : response[0].run;
-    if (!data){ return; }
-
     var textareas = [].slice.call(document.querySelectorAll('textarea'));
     textareas.forEach(function (textarea) {
       if (textarea.name in data) {

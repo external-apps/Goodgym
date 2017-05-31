@@ -1,4 +1,5 @@
 var waypoints = [];
+var destination = '';
 
 function initMap (data) {
   // waypoints += data.mapDetails;
@@ -13,12 +14,16 @@ function initMap (data) {
 
   directionsDisplay.addListener('directions_changed', function () {
     waypoints = directionsDisplay.getDirections().routes[0].legs[0].via_waypoint;
+    destination = directionsDisplay.getDirections().routes[0].legs[0].end_address;
     computeTotalDistance(directionsDisplay.getDirections());
   });
 
-  if (data) {
-    var startPoint = data.startPoint;
-    var endPoint = data.endPoint;
+  if (data.length > 0) {
+    console.log(data);
+    var startPoint = data[0].run.startPoint;
+    // var endPoint = destination || data[0].run.startPoint;
+    var endPoint = data[0].run.endPoint;
+
     if (data.mapDetails) {
       // data.mapDetails.forEach(function (point) {
       //   console.log(point);
@@ -27,10 +32,10 @@ function initMap (data) {
       // console.log(waypoints);
       // console.log(data.mapDetails);
       waypoints = data.mapDetails;
-    } else {
-      startPoint = 'brixton, London, UK';
-      endPoint = 'clapham, London, UK';
     }
+  } else {
+    startPoint = 'brixton, London, UK';
+    endPoint = 'clapham, London, UK';
   }
 
   displayRoute(startPoint, endPoint, directionsService, directionsDisplay, waypoints);
