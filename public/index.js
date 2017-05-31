@@ -118,18 +118,17 @@
   }
 
   function getRun () {
-    var data = {
-      runId: window.location.pathname
-    };
-    var url = window.location.origin + '/get-run' + data.runId;
+    var runId = window.location.pathname;
+    var url = window.location.origin + '/get-run' + runId;
     var req = new XMLHttpRequest();
 
     req.open('GET', url);
     req.onload = function () {
       if (req.status === 200) {
         var data = JSON.parse(req.response);
-        waypointsFromDatabase = data[0].run.mapDetails;
+        // waypointsFromDatabase = data[0].run.mapDetails;
         // console.log(waypointsFromDatabase);
+        initMap(data);
         fillForm(data);
       } else {
         throw new Error(req.statusText);
@@ -143,7 +142,7 @@
 
   function fillForm (response) {
     var data = response.length === 0 ? '' : response[0].run;
-    initMap(data);
+    if (!data){ return; }
 
     var textareas = [].slice.call(document.querySelectorAll('textarea'));
     textareas.forEach(function (textarea) {
