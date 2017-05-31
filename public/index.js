@@ -5,18 +5,60 @@
 
   var registerButton = document.getElementsByClassName('_yoti-verify-button')[0];
   if (registerButton) {
-    registerButton.href = window.location.origin + '/qr/test';
+    registerButton.href = window.location.origin + '/qr' + window.location.pathname;
   }
 
-  var saveButton = document.getElementsByClassName('save-button')[0];
+  var qrContainer = document.getElementsByClassName('qr-container')[0];
+  if (qrContainer) {
+    if (!sessionStorage.run_id || sessionStorage.run_id === undefined) {
+      sessionStorage.setItem('run_id', window.location.pathname.split('/')[2]);
+    }
+  }
+
+  var saveButton = document.getElementsByClassName('button-container__save-button')[0];
   if (saveButton) {
     window.onload = getRun();
     saveButton.addEventListener('click', saveToDatabase);
   }
 
-  var loginButton = document.getElementsByClassName('login-button')[0];
+  var loginButton = document.getElementsByClassName('button-container__login-button')[0];
   if (loginButton) {
+    var formInput = document.getElementsByClassName('form-container__input')[0];
     loginButton.addEventListener('click', handleLoginClick);
+    formInput.addEventListener('keypress', function (event) {
+      if (event.keyCode === 13 || event.which === 13) {
+        event.preventDefault();
+        handleLoginClick();
+      }
+    });
+  }
+
+  var backToQRButton = document.getElementsByClassName('button-container__confirmation-button')[0];
+  if (backToQRButton) {
+    backToQRButton.addEventListener('click', function () {
+      window.location.pathname = '/qr/' + sessionStorage.run_id;
+    });
+  }
+
+  var confirmationPage = document.getElementsByClassName('confirmation-container')[0];
+  if (confirmationPage) {
+    var taskSheetLocation = window.location.origin + '/task-sheet/' + sessionStorage.run_id;
+    httpPostRequest({
+      taskSheetURL: taskSheetLocation,
+      firstName: document.getElementsByClassName('confirmation-body__firstName')[0].innerText,
+      emailAddress: document.getElementsByClassName('confirmation-body__emailAddress')[0].innerText
+    }, '/send-task-sheet/:id');
+  }
+
+  var sendEmailButton = document.getElementsByClassName('button-container__send-email-button')[0];
+  if (sendEmailButton) {
+    sendEmailButton.addEventListener('click', function () {
+      var emailBody = {
+        emailAddress: document.getElementsByClassName('email-container__email-input')[0].value,
+        qrAddress: window.location.origin + '/qr' + window.location.pathname
+      };
+      httpPostRequest(emailBody, '/send-qr-email/:id');
+    });
   }
 
   function handleLoginClick () {
@@ -38,6 +80,7 @@
     this.purpose = tasks[2].value;
     this.contact = tasks[3].value;
     this.risk = tasks[4].value;
+    this.email = tasks[5].value;
     this.runId = runId;
   }
 
@@ -57,13 +100,11 @@
     });
     console.log(waypoints);
     var taskObj = new Task(taskInfoArray, runId, startPoint, endPoint, waypoints);
-    // console.log('TASK Object:', taskObj);
-    httpPostRequest(taskObj);
+    httpPostRequest(taskObj, '/post-run/:id');
   }
 
-  function httpPostRequest (info) {
+  function httpPostRequest (info, url) {
     var http = new XMLHttpRequest();
-    var url = '/post-run/:id';
     http.open('POST', url, true);
     http.setRequestHeader('Content-Type', 'application/json');
     console.log(info);
@@ -80,7 +121,7 @@
     var data = {
       runId: window.location.pathname
     };
-    var url = 'https://localhost:3000/get-run' + data.runId;
+    var url = window.location.origin + '/get-run' + data.runId;
     var req = new XMLHttpRequest();
 
     req.open('GET', url);
@@ -91,11 +132,11 @@
         // console.log(waypointsFromDatabase);
         fillForm(data);
       } else {
-        new Error(req.statusText);
+        throw new Error(req.statusText);
       }
     };
     req.onerror = function () {
-      new Error('Network error');
+      throw new Error('Network error');
     };
     req.send();
   }

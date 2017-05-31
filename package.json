@@ -3,8 +3,11 @@
   "version": "1.0.0",
   "description": "April 2017 - Prototype app consuming Yoti",
   "main": "index.js",
+  "engines": {
+    "node": "6.10.3"
+  },
   "scripts": {
-    "start": "./bin/start",
+    "start": "node src/server-start.js",
     "devStart": "./bin/dev-start",
     "test": "./bin/test",
     "buildCss": "./bin/build-css",
@@ -22,9 +25,11 @@
   "homepage": "https://github.com/external-apps/Goodgym#readme",
   "dependencies": {
     "body-parser": "^1.17.1",
+    "env2": "^2.2.0",
     "express": "^4.15.2",
     "express-handlebars": "^3.0.0",
     "mongoose": "^4.9.8",
+    "nodemailer": "^4.0.1",
     "request": "^2.81.0",
     "yoti-node-sdk": "^1.0.2"
   },

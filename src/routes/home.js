@@ -1,6 +1,6 @@
 require('env2')(`${__dirname}/../../.env`);
 const apiKey = process.env.API_KEY;
-const getRun = require('./getRunFromGoodGym');
+const getRun = require('../helpers/get-run-from-goodgym');
 
 const home = (req, res) => {
   res.render('home', {
