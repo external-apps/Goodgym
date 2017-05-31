@@ -1,12 +1,12 @@
 require('env2')(`${__dirname}/../../.env`);
+const SDK_ID = process.env.CLIENT_SDK_ID;
+const PEM = process.env.SECURITY_PEM;
 
 if (!SDK_ID) {
   throw new Error('Enviroment variable CLIENT_SDK_ID must be set.');
 }
 
 const YotiClient = require('yoti-node-sdk');
-const SDK_ID = process.env.CLIENT_SDK_ID;
-const PEM = process.env.SECURITY_PEM;
 let yotiClient = new YotiClient(SDK_ID, PEM);
 
 const confirmation = (req, res) => {
