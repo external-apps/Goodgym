@@ -4,7 +4,7 @@ const getRun = (req, res) => {
   const runId = req.params.id;
   findOneRun(runId, (err, run) => {
     if (err) {
-      res.render('error', { error: 'No run found in our database!' });
+      res.status(400).json({ error: `No run found for ID: ${runId}` });
       return;
     }
     res.json(run);
