@@ -30,6 +30,7 @@
     "express": "^4.15.2",
     "express-handlebars": "^3.0.0",
     "express-session": "^1.15.3",
+    "express-validator": "^3.2.0",
     "mongoose": "^4.9.8",
     "nodemailer": "^4.0.1",
     "passport": "^0.3.2",
