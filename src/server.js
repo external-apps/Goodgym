@@ -4,6 +4,8 @@ const session = require('express-session');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const passport = require('passport');
+const LocalStrategy = require('passport-local').Strategy;
+const { getUserByUsername, getUserById } = require('./helpers/admin-queries');
 const path = require('path');
 const routes = require('./routes');
 const app = express();
@@ -29,6 +31,26 @@ app.use(session({
 
 app.use(passport.initialize());
 app.use(passport.session());
+
+passport.use(new LocalStrategy(
+(username, password, done) => {
+  getUserByUsername(username, (err, user) => {
+    if (err) throw err;
+    if (!user) return done(null, false);
+    if (password !== user.password) return done(null, false);
+    return done(null, user);
+  });
+}));
+
+passport.serializeUser((user, done) => {
+  done(null, user.id);
+});
+
+passport.deserializeUser((id, done) => {
+  getUserById(id, (err, user) => {
+    done(err, user);
+  });
+});
 
 app.use(express.static('public'));
 app.use('/', routes);
