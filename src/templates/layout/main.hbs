@@ -9,6 +9,11 @@
   <script src="https://sdk.yoti.com/clients/browser.js"></script>
 </head>
 <body>
+  {{#if user}}
+    <nav class="nav-container">
+      <button href="/logout" class="button-logout">Logout</button>
+    </nav>
+  {{/if}}
 
   {{{ body }}}
 

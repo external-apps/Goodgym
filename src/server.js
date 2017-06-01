@@ -8,7 +8,7 @@ const LocalStrategy = require('passport-local').Strategy;
 const { getUserByUsername, getUserById } = require('./helpers/admin-queries');
 const path = require('path');
 const routes = require('./routes');
-const app = express();
+let app = express();
 
 const hbs = exphbs.create({
   defaultLayout: path.join(__dirname, '/templates/layout/main.hbs')
@@ -50,6 +50,11 @@ passport.deserializeUser((id, done) => {
   getUserById(id, (err, user) => {
     done(err, user);
   });
+});
+
+app.use((req, res, next) => {
+  res.locals.user = req.user || null;
+  next();
 });
 
 app.use(express.static('public'));

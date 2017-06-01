@@ -1,3 +1,4 @@
+.nav-container,
 .home-container {
   @extend %main-container;
 }
@@ -37,9 +38,14 @@
   @extend %button-container;
 }
 
+.button-logout,
 .button-container__save-button,
 .button-container__send-email-button {
   @extend %button;
+}
+
+.button-logout {
+  float: right;
 }
 
 .button-container__send-email-button {
