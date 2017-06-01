@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
-const { getUserByUsername, getUserById } = require('./models/Admin');
+const { getUserByUsername, getUserById } = require('./helpers/admin-queries');
 // const checkAuth = require('./helpers/authenticationMiddleware');
 
 const login = require('./routes/login');
