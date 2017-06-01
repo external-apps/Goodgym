@@ -4,9 +4,8 @@ const session = require('express-session');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const passport = require('passport');
-const localStrategy = require('passport-local').Strategy;
-const routes = require('./routes');
 const path = require('path');
+const routes = require('./routes');
 const app = express();
 
 const hbs = exphbs.create({
@@ -19,8 +18,14 @@ app.set('view engine', 'hbs');
 app.set('views', path.join(__dirname, '/templates/views'));
 
 app.use(bodyParser());
-app.use(cookieParser('shhhh, very secret'));
-app.use(session({secret: 'shhsecret', resave: true, saveUninitialized: false}));
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cookieParser());
+
+app.use(session({
+  secret: 'shhsecret',
+  resave: true,
+  saveUninitialized: true
+}));
 
 app.use(passport.initialize());
 app.use(passport.session());
