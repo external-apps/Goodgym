@@ -1,4 +1,4 @@
-module.exports = (req, res, next) => {
+const authMiddleware = (req, res, next) => {
   console.log(req.isAuthenticated(), 'req from middleware');
   if (req.isAuthenticated()) {
     return next();
@@ -6,3 +6,5 @@ module.exports = (req, res, next) => {
     res.redirect('/login');
   }
 };
+
+module.exports = authMiddleware;

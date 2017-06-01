@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const passport = require('passport');
-const checkAuth = require('./helpers/authenticationMiddleware');
+const authMiddleware = require('./helpers/auth-middleware');
 
 const login = require('./routes/login');
 const confirmation = require('./routes/confirmation');
@@ -17,7 +17,7 @@ router.get('/', login);
 router.get('/login', login)
       .post('/login',
 passport.authenticate('local', {successRedirect: '/admin', failureRedirect: '/login'}));
-router.get('/admin', checkAuth, (req, res) => {
+router.get('/admin', authMiddleware, (req, res) => {
   res.render('home');
 });
 
@@ -27,8 +27,8 @@ router.get('/logout', (req, res) => {
   res.redirect('/login');
 });
 router.get('/confirmation', confirmation);
-router.get('/:id', checkAuth, home);
-router.get('/qr/:id', checkAuth, qr);
+router.get('/:id', authMiddleware, home);
+router.get('/qr/:id', authMiddleware, qr);
 router.get('/task-sheet/:id', tasksheet);
 router.get('/get-run/:id', getRun);
 router.post('/post-run/:id', postRun);
