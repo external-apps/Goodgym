@@ -22,6 +22,7 @@ router.get('/admin', checkAuth, (req, res) => {
 });
 
 router.get('/logout', (req, res) => {
+  console.log('Logout!');
   req.logout();
   res.redirect('/login');
 });
