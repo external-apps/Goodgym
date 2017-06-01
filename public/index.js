@@ -71,32 +71,29 @@
     window.location.pathname = runId;
   }
 
-  function Task (tasks, runId, waypoints, endPoint) {
-    this.mapDetails = waypoints;
-    this.startPoint = tasks[1].value;
-    this.endPoint = endPoint;
-    this.task = tasks[0].value;
-    this.location = tasks[1].value;
-    this.purpose = tasks[2].value;
-    this.contact = tasks[3].value;
-    this.risk = tasks[4].value;
-    this.email = tasks[5].value;
-    this.runId = runId;
-  }
-
   function saveToDatabase () {
     var runId = window.location.pathname.slice(1);
-    var taskInfoArray = [].slice.call(document.querySelectorAll('textarea'));
-    // Take the points from the map pulled from database rather than the array which clears on page reload
-    // add waypointsFromDatabase to waypoints here
-    // console.log(waypointsFromDatabase, waypoints);
+    var taskInfo = [].slice.call(document.querySelectorAll('textarea'));
+
     waypointsFromDatabase.forEach(function (point) {
-      console.log('forEach running');
-      console.log(point);
-      waypoints.push(point);
+      if (waypoints.indexOf(point) === -1) {
+        waypoints.push(point);
+      }
     });
-    console.log(waypoints);
-    var taskObj = new Task(taskInfoArray, runId, waypoints, destination);
+
+    var taskObj = {
+      mapDetails: waypoints,
+      startPoint: taskInfo[1].value,
+      endPoint: destination,
+      task: taskInfo[0].value,
+      location: taskInfo[1].value,
+      purpose: taskInfo[2].value,
+      contact: taskInfo[3].value,
+      risk: taskInfo[4].value,
+      email: taskInfo[5].value,
+      runId: runId
+    }
+
     httpPostRequest(taskObj, '/post-run/:id');
   }
 
@@ -123,13 +120,16 @@
     req.onload = function () {
       if (req.status === 200) {
         var data = JSON.parse(req.response);
-        // waypointsFromDatabase = data[0].run.mapDetails;
+        // THIS BELOW?
+        // console.log('endPoint:', data[0].run.endPoint);
+        waypointsFromDatabase = data[0].run.mapDetails;
         // console.log(waypointsFromDatabase);
         // var endPointFromDatabase = data[0].run.endPoint;
         if (data.length > 0) {
           initMap(data);
           fillForm(data);
         } else {
+          // get waypoints from DOM passed via handlebars and add to the object below
           var locationInfo = document.getElementsByClassName('location-info')[0].value;
           initMap([{run: { startPoint: locationInfo }}]);
         }
