@@ -43,12 +43,28 @@
 }
 
 .button-container__save-button,
-.button-container__send-email-button {
+.button-container__send-email-button,
+.button-container__save-verification-button,
+.button-container__qr-verification-button {
   @extend %button;
 }
 
-.button-container__send-email-button {
-  width: auto;
+.hidden {
+  display: none;
+}
+
+.checkmark {
+  fill: none;
+  stroke: black;
+  stroke-width: 3.5;
+  stroke-miterlimit: 10;
+  height: 20px;
+  transform: translate(0, 3px);
+}
+
+.button-container__send-email-button,
+.button-container__qr-verification-button {
+  width: 175px;
   padding: 0 15px;
 }
 

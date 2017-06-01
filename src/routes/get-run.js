@@ -3,7 +3,10 @@ const findOneRun = require('./../database/db-find-one');
 const getRun = (req, res) => {
   const runId = req.params.id;
   findOneRun(runId, (err, run) => {
-    if (err) console.error(err);
+    if (err) {
+      res.status(400).json({ error: `No run found for ID: ${runId}` });
+      return;
+    }
     res.json(run);
   });
 };
