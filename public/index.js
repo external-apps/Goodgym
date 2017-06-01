@@ -120,18 +120,17 @@
     req.onload = function () {
       if (req.status === 200) {
         var data = JSON.parse(req.response);
-        // THIS BELOW?
-        // console.log('endPoint:', data[0].run.endPoint);
-        waypointsFromDatabase = data[0].run.mapDetails;
-        // console.log(waypointsFromDatabase);
-        // var endPointFromDatabase = data[0].run.endPoint;
         if (data.length > 0) {
+          waypointsFromDatabase = data[0].run.mapDetails;
           initMap(data);
           fillForm(data);
         } else {
-          // get waypoints from DOM passed via handlebars and add to the object below
           var locationInfo = document.getElementsByClassName('location-info')[0].value;
-          initMap([{run: { startPoint: locationInfo }}]);
+          initMap([{
+            run: {
+              startPoint: locationInfo
+            }
+          }]);
         }
       } else {
         throw new Error(req.statusText);

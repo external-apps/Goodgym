@@ -14,23 +14,19 @@ function initMap (data) {
     destination = directionsDisplay.getDirections().routes[0].legs[0].end_address;
     computeTotalDistance(directionsDisplay.getDirections());
     var legs = directionsDisplay.getDirections().routes[0].legs;
-    console.log(directionsDisplay.getDirections().routes[0].legs[0]);
     if (legs.length > 1) {
       destination = legs[legs.length - 1].end_address;
     }
   });
 
-  if (data.length > 0) {
-    var startPoint = data[0].run.startPoint;
-    var endPoint = data[0].run.endPoint || data[0].run.startPoint;
-    waypoints = data[0].run.mapDetails;
-  }
+  var startPoint = data[0].run.startPoint;
+  var endPoint = data[0].run.endPoint || data[0].run.startPoint;
+  waypoints = data[0].run.mapDetails || [];
 
   displayRoute(startPoint, endPoint, directionsService, directionsDisplay, waypoints);
 }
 
 function displayRoute (startPoint, endPoint, service, display, waypoints) {
-  console.log('endpoint:', endPoint);
   var points = [];
   if (waypoints.length > 0) {
     waypoints.forEach(function (point) {
