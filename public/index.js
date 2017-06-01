@@ -2,6 +2,7 @@
   'use strict';
   var addedNode = '';
   var waypointsFromDatabase = [];
+  var taskInfo = [].slice.call(document.querySelectorAll('textarea'));
 
   var registerButton = document.getElementsByClassName('_yoti-verify-button')[0];
   if (registerButton) {
@@ -78,7 +79,6 @@
 
   function saveToDatabase () {
     var runId = window.location.pathname.slice(1);
-    var taskInfo = [].slice.call(document.querySelectorAll('textarea'));
 
     waypointsFromDatabase.forEach(function (point) {
       if (waypoints.indexOf(point) === -1) {
@@ -122,6 +122,7 @@
   }
 
   function getRun () {
+    var locationInfo = document.getElementsByClassName('location-info')[0].value;
     var runId = window.location.pathname;
     var url = window.location.origin + '/get-run' + runId;
     var req = new XMLHttpRequest();
@@ -135,7 +136,6 @@
           initMap(data);
           fillForm(data);
         } else {
-          var locationInfo = document.getElementsByClassName('location-info')[0].value;
           initMap([{
             run: {
               startPoint: locationInfo
@@ -213,4 +213,17 @@
       }
     });
   }
+
+  var clearMapButton = document.querySelector('.clear-map');
+  clearMapButton.addEventListener('click', clearMap);
+
+  function clearMap () {
+    console.log('clear map');
+    waypointsFromDatabase = [];
+    initMap([{
+      run: {
+        startPoint: taskInfo[1].value
+      }
+    }]);
+  };
 })();

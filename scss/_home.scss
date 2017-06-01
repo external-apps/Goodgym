@@ -114,6 +114,12 @@
   @extend %goodgym-logo;
 }
 
+.clear-map {
+  margin-left: 20px;
+  color: #ed1c24;
+  cursor: pointer;
+}
+
 @media screen and (min-width: 768px){
   .col-1 {
     float: left;
