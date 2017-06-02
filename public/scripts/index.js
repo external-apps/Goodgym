@@ -1,4 +1,4 @@
-/* global XMLHttpRequest */
+/* global initMap XMLHttpRequest */
 
 window.index = (function () {
   'use strict';

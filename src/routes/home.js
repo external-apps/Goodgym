@@ -18,7 +18,8 @@ const home = (req, res) => {
           '/scripts/index.js',
           '/scripts/home.js',
           '/scripts/google-maps.js',
-          'anime.min.js'
+          'anime.min.js',
+          '/scripts/yoti-init.js'
         ]
       });
     });

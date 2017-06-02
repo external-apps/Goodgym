@@ -1,4 +1,4 @@
-/* global index maps anime */
+/* global index maps waypoints destination anime */
 
 window.home = (function () {
   'use strict';

@@ -1,9 +1,13 @@
+/* global alert home google */
+
 var waypoints = [];
 var destination = '';
+var clearMapButton = document.querySelector('.clear-map');
+clearMapButton.addEventListener('click', clearMap);
 
 function initMap (data) {
   var map = new google.maps.Map(document.getElementById('map'));
-  var directionsService = new google.maps.DirectionsService;
+  var directionsService = new google.maps.DirectionsService();
   var directionsDisplay = new google.maps.DirectionsRenderer({
     draggable: true,
     map: map
@@ -28,11 +32,9 @@ function initMap (data) {
 
 function displayRoute (startPoint, endPoint, service, display, waypoints) {
   var points = [];
-  if (waypoints.length > 0) {
-    waypoints.forEach(function (point) {
-      points.push({ location: new google.maps.LatLng({lat: point.location.lat, lng: point.location.lng}) });
-    });
-  }
+  waypoints.forEach(function (point) {
+    points.push({ location: new google.maps.LatLng({lat: point.location.lat, lng: point.location.lng}) });
+  });
   service.route({
     origin: startPoint,
     destination: endPoint,
@@ -57,9 +59,6 @@ function computeTotalDistance (result) {
   total = total / 1000;
   document.getElementById('total').innerHTML = total + ' km';
 }
-
-var clearMapButton = document.querySelector('.clear-map');
-clearMapButton.addEventListener('click', clearMap);
 
 function clearMap () {
   console.log('clear map');
