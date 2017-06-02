@@ -20,7 +20,10 @@ const confirmation = (req, res) => {
     res.render('confirmation', {
       firstName: capitalise(userProfile.givenNames.split(' ')[0]),
       lastName: capitalise(userProfile.familyName),
-      emailAddress: userProfile.emailAddress
+      emailAddress: userProfile.emailAddress,
+      scripts: [
+        '/scripts/confirmation.js'
+      ]
     });
   }).catch((err) => {
     res.render('error', { error: err });
