@@ -13,7 +13,13 @@ const home = (req, res) => {
       }
       res.render('home', {
         run: run,
-        apiKey: apiKey
+        apiKey: apiKey,
+        scripts: [
+          '/scripts/index.js',
+          '/scripts/home.js',
+          '/scripts/google-maps.js',
+          'anime.min.js'
+        ]
       });
     });
   }

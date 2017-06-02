@@ -57,3 +57,16 @@ function computeTotalDistance (result) {
   total = total / 1000;
   document.getElementById('total').innerHTML = total + ' km';
 }
+
+var clearMapButton = document.querySelector('.clear-map');
+clearMapButton.addEventListener('click', clearMap);
+
+function clearMap () {
+  console.log('clear map');
+  waypointsFromDatabase = [];
+  initMap([{
+    run: {
+      startPoint: home.taskInfo[1].value
+    }
+  }]);
+};

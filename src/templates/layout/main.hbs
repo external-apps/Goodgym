@@ -16,10 +16,11 @@
     _ybg.init()
   </script>
 
-  <script src="/index.js"></script>
-  <script src="/google-maps.js"></script>
-  <script src="/anime.min.js"></script>
   <script async defer src="{{ apiKey }}"></script>
+
+  {{#each scripts}}
+    <script type="text/javascript" src="{{this}}"></script>
+  {{/each}}
 
 </body>
 </html>

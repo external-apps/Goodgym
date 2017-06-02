@@ -1,6 +1,10 @@
 const sendTaskSheetFunction = require('../send-task-sheet');
 
 const sendEmail = (req, res) => {
+  if (process.env.NODE_ENV === 'testing') {
+    res.send().status(200);
+    return;
+  }
   const body = req.body;
   sendTaskSheetFunction(body, (err, payload) => {
     if (err) {
