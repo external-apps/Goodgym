@@ -14,7 +14,7 @@
 
       <div class="location form">
         <h4>Location</h4>
-        <textarea name="location">{{ data.start_point }}</textarea>
+        <textarea name="location">{{ data.location.streetAddress }}, {{ data.location.addressLocality }}, {{ data.location.postalCode }}</textarea>
       </div>
 
       <div class="purpose form">
