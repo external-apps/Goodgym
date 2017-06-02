@@ -1,8 +1,6 @@
 const GoodGymDB = require('./db-connection');
 
 const updateRun = (inputRun) => {
-  console.log('RUN UPDATED');
-  console.log('INPUT RUN:', inputRun);
   const updateOption = {
     '$set': {
       'run.mapDetails': inputRun.mapDetails,
