@@ -1,7 +1,9 @@
+/* global sessionStorage MutationObserver */
+
 (function () {
   'use strict';
+  var addedNode = '';
 
-  var qrContainer = document.getElementsByClassName('qr-container')[0];
   if (!sessionStorage.run_id || sessionStorage.run_id === undefined) {
     sessionStorage.setItem('run_id', window.location.pathname.split('/')[2]);
   }

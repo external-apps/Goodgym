@@ -1,8 +1,10 @@
+/* global app anime */
+
 (function () {
   'use strict';
 
   var saveButton = document.getElementsByClassName('button-container__save-button')[0];
-  window.onload = getRun();
+  window.addEventListener('load', app.getRun);
   saveButton.addEventListener('click', saveToDatabase);
 
   var sendEmailButton = document.getElementsByClassName('button-container__send-email-button')[0];
@@ -16,14 +18,14 @@
       emailAddress: document.getElementsByClassName('email-container__email-input')[0].value,
       qrAddress: window.location.origin + '/qr' + window.location.pathname
     };
-    httpPostRequest(emailBody, '/send-qr-email/:id');
+    app.httpPostRequest(emailBody, '/send-qr-email/:id');
   });
 
   function saveToDatabase () {
     var runId = window.location.pathname.slice(1);
     var taskInfoArray = [].slice.call(document.querySelectorAll('textarea'));
-    var taskObj = new Task(taskInfoArray, runId);
-    httpPostRequest(taskObj, '/post-run/:id');
+    var taskObj = new app.Task(taskInfoArray, runId);
+    app.httpPostRequest(taskObj, '/post-run/:id');
     triggerVerification(
       document.querySelector('.button-container__save-button'),
       document.querySelector('.button-container__save-verification-button'),
