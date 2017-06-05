@@ -21,20 +21,26 @@ conn.once('open', () => {
   console.log('We are connected!');
 });
 
-const GoodGymSchema = new Schema({
-  run: Object
+const runSchema = new Schema({
+  runId: { type: String, trim: true, unique: true },
+  task: { type: String, trim: true },
+  location: { type: String, trim: true },
+  purpose: { type: String, trim: true },
+  contact: { type: String, trim: true },
+  risk: { type: String, trim: true },
+  email: { type: String, trim: true, lowercase: true }
 });
 
-const GoodGymDB = mongoose.model('GoodGymDB', GoodGymSchema);
+const Run = mongoose.model('Run', runSchema);
 
 const adminSchema = new Schema({
-  username: { type: String, required: true, unique: true },
-  password: { type: String, required: true }
+  username: { type: String, required: true, trim: true, unique: true },
+  password: { type: String, required: true, trim: true }
 });
 
 const Admin = mongoose.model('Admin', adminSchema);
 
 module.exports = {
-  GoodGymDB,
+  Run,
   Admin
 };
