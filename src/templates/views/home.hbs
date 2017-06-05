@@ -9,17 +9,17 @@
     <div class="col-1">
       <div class="task form">
         <h4>Task</h4>
-        <textarea name="task">{{ data.name }} {{ data.strapline }}</textarea>
+        <textarea name="task">{{ run.data.name }} {{ run.data.strapline }}</textarea>
       </div>
 
       <div class="location form">
         <h4>Location</h4>
-        <textarea name="location">{{ data.location.streetAddress }}, {{ data.location.addressLocality }}, {{ data.location.postalCode }} </textarea>
+        <textarea name="location">{{ run.data.location.streetAddress }}, {{ run.data.location.addressLocality }}, {{ run.data.location.postalCode }} </textarea>
       </div>
 
       <div class="purpose form">
         <h4>Purpose</h4>
-        <textarea name="purpose">{{ data.description }}</textarea>
+        <textarea name="purpose">{{ run.data.description }}</textarea>
       </div>
     </div>
 
