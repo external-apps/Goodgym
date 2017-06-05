@@ -22,20 +22,20 @@ conn.once('open', () => {
 });
 
 const runSchema = new Schema({
-  runId: String,
-  task: String,
-  location: String,
-  purpose: String,
-  contact: String,
-  risk: String,
-  email: String
+  runId: { type: String, trim: true, unique: true },
+  task: { type: String, trim: true },
+  location: { type: String, trim: true },
+  purpose: { type: String, trim: true },
+  contact: { type: String, trim: true },
+  risk: { type: String, trim: true },
+  email: { type: String, trim: true, lowercase: true }
 });
 
 const Run = mongoose.model('Run', runSchema);
 
 const adminSchema = new Schema({
-  username: { type: String, required: true, unique: true },
-  password: { type: String, required: true }
+  username: { type: String, required: true, trim: true, unique: true },
+  password: { type: String, required: true, trim: true }
 });
 
 const Admin = mongoose.model('Admin', adminSchema);
