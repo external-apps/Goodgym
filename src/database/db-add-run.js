@@ -4,7 +4,13 @@ const updateRun = require('./db-update-run');
 
 const addRunToDB = (inputRun, cb) => {
   let newRun = Run({
-    run: inputRun
+    runId: inputRun.runId,
+    task: inputRun.task,
+    location: inputRun.location,
+    purpose: inputRun.purpose,
+    contact: inputRun.contact,
+    risk: inputRun.risk,
+    email: inputRun.email
   });
 
   const saveRun = () => {
