@@ -22,6 +22,7 @@ const confirmation = (req, res) => {
       lastName: capitalise(userProfile.familyName),
       emailAddress: userProfile.emailAddress,
       scripts: [
+        '/scripts/index.js',
         '/scripts/confirmation.js'
       ]
     });
