@@ -1,4 +1,4 @@
-const Run = require('./db-connection');
+const { Run } = require('./db-connection');
 
 const updateRun = (inputRun) => {
   const updateOption = {

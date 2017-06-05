@@ -3,11 +3,13 @@
 (function () {
   'use strict';
 
-  // var registerButton = document.getElementsByClassName('_yoti-verify-button')[0];
-  // registerButton.href = window.location.origin + '/qr' + window.location.pathname;
+  window.addEventListener('load', function () {
+    var registerButton = document.getElementsByClassName('_yoti-verify-button')[0];
+    registerButton.href = window.location.origin + '/qr' + window.location.pathname;
+    app.getRun();
+  });
 
   var saveButton = document.getElementsByClassName('button-container__save-button')[0];
-  window.addEventListener('load', app.getRun);
   saveButton.addEventListener('click', saveToDatabase);
 
   var sendEmailButton = document.getElementsByClassName('button-container__send-email-button')[0];

@@ -1,4 +1,4 @@
-const Run = require('./db-connection');
+const { Run } = require('./db-connection');
 
 const findOneRun = (runId, cb) => {
   Run.find({runId: runId}, (err, run) => {

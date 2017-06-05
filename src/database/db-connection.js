@@ -21,7 +21,7 @@ conn.once('open', () => {
   console.log('We are connected!');
 });
 
-const RunSchema = new Schema({
+const runSchema = new Schema({
   runId: String,
   task: String,
   location: String,
@@ -31,6 +31,16 @@ const RunSchema = new Schema({
   email: String
 });
 
-const Run = mongoose.model('Run', RunSchema);
+const Run = mongoose.model('Run', runSchema);
 
-module.exports = Run;
+const adminSchema = new Schema({
+  username: { type: String, required: true, unique: true },
+  password: { type: String, required: true }
+});
+
+const Admin = mongoose.model('Admin', adminSchema);
+
+module.exports = {
+  Run,
+  Admin
+};

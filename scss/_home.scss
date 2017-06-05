@@ -1,3 +1,4 @@
+.nav-container,
 .home-container {
   @extend %main-container;
 }
@@ -37,11 +38,28 @@
   @extend %button-container;
 }
 
+.button-logout,
 .button-container__save-button,
 .button-container__send-email-button,
 .button-container__save-verification-button,
 .button-container__qr-verification-button {
   @extend %button;
+}
+
+.button-logout {
+  float: right;
+  text-decoration: none;
+  color: #000;
+  text-align: center;
+  padding: 5px;
+  height: 29px;
+  margin-right: 10px;
+}
+
+.button-container__send-email-button,
+.button-container__qr-verification-button {
+  width: 175px;
+  padding: 0 15px;
 }
 
 .hidden {
@@ -55,12 +73,6 @@
   stroke-miterlimit: 10;
   height: 20px;
   transform: translate(0, 3px);
-}
-
-.button-container__send-email-button,
-.button-container__qr-verification-button {
-  width: 175px;
-  padding: 0 15px;
 }
 
 .contact {
