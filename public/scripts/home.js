@@ -3,6 +3,9 @@
 (function () {
   'use strict';
 
+  var registerButton = document.getElementsByClassName('_yoti-verify-button')[0];
+  registerButton.href = window.location.origin + '/qr' + window.location.pathname;
+
   var saveButton = document.getElementsByClassName('button-container__save-button')[0];
   window.addEventListener('load', app.getRun);
   saveButton.addEventListener('click', saveToDatabase);
