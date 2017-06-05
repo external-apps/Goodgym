@@ -1,6 +1,10 @@
 const sendEmailFunction = require('../send-qr-email');
 
 const sendQREmail = (req, res) => {
+  if (process.env.NODE_ENV === 'testing') {
+    res.send().status(200);
+    return;
+  }
   const body = req.body;
   sendEmailFunction(body, (err, payload) => {
     if (err) {

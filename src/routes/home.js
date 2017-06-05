@@ -9,7 +9,14 @@ const home = (req, res) => {
         res.render('error', { error: 'No run found in our database!' });
         return;
       }
-      res.render('home', run);
+      res.render('home', {
+        run: run,
+        scripts: [
+          '/scripts/index.js',
+          '/scripts/home.js',
+          'anime.min.js'
+        ]
+      });
     });
   }
 };
