@@ -3,11 +3,6 @@
 window.app = (function () {
   'use strict';
 
-  var registerButton = document.getElementsByClassName('_yoti-verify-button')[0];
-  if (registerButton) {
-    registerButton.href = window.location.origin + '/qr' + window.location.pathname;
-  }
-
   function Task (tasks, runId) {
     this.runId = runId;
     this.task = tasks[0].value;
