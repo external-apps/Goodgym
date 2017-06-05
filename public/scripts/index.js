@@ -36,7 +36,7 @@ window.app = (function () {
 
   function fillForm (response) {
     if (!response[0]) return;
-    var data = response[0].run;
+    var data = response[0];
     var textareas = [].slice.call(document.querySelectorAll('textarea'));
     textareas.forEach(function (textarea) {
       if (textarea.name in data) {
