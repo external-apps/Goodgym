@@ -1,4 +1,4 @@
-const GoodGymDB = require('./db-connection');
+const Run = require('./db-connection');
 
 const updateRun = (inputRun) => {
   const updateOption = {
@@ -12,7 +12,7 @@ const updateRun = (inputRun) => {
     }
   };
 
-  GoodGymDB.findOneAndUpdate({'run.runId': inputRun.runId}, updateOption, (err, run) => {
+  Run.findOneAndUpdate({'run.runId': inputRun.runId}, updateOption, (err, run) => {
     if (err) throw err;
     console.log(run, 'Updated run!');
   });

@@ -1,9 +1,9 @@
-const GoodGymDB = require('./db-connection');
+const Run = require('./db-connection');
 const findOneRun = require('./db-find-one');
 const updateRun = require('./db-update-run');
 
 const addRunToDB = (inputRun, cb) => {
-  let newRun = GoodGymDB({
+  let newRun = Run({
     run: inputRun
   });
 

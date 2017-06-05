@@ -21,13 +21,16 @@ conn.once('open', () => {
   console.log('We are connected!');
 });
 
-// create a schema
-const GoodGymSchema = new Schema({
-  run: Object
+const RunSchema = new Schema({
+  runId: String,
+  task: String,
+  location: String,
+  purpose: String,
+  contact: String,
+  risk: String,
+  email: String
 });
 
-// the schema is useless so far
-// we need to create a model using it
-const GoodGymDB = mongoose.model('GoodGymDB', GoodGymSchema);
+const Run = mongoose.model('Run', RunSchema);
 
-module.exports = GoodGymDB;
+module.exports = Run;
