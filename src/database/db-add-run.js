@@ -14,10 +14,7 @@ const addRunToDB = (inputRun, cb) => {
 
   const options = { upsert: true, new: true };
 
-  Run.findOneAndUpdate({runId: inputRun.runId}, updateOption, options, (err, run) => {
-    if (err) throw err;
-    console.log(run, 'Run has been changed!');
-  });
+  Run.findOneAndUpdate({runId: inputRun.runId}, updateOption, options, cb);
 };
 
 module.exports = addRunToDB;
