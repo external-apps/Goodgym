@@ -35,12 +35,11 @@ window.app = (function () {
   }
 
   function fillForm (response) {
-    if (!response[0]) return;
-    var data = response[0];
+    if (!response) return;
     var textareas = [].slice.call(document.querySelectorAll('textarea'));
     textareas.forEach(function (textarea) {
-      if (textarea.name in data) {
-        textarea.value = data[textarea.name];
+      if (textarea.name in response) {
+        textarea.value = response[textarea.name];
       }
     });
   }

@@ -1,12 +1,12 @@
 const { Admin } = require('../database/db-connection');
 
-const getUserByUsername = (username, callback) => {
+const getUserByUsername = (username, cb) => {
   var query = {username: username};
-  Admin.findOne(query, callback);
+  Admin.findOne(query, cb);
 };
 
-const getUserById = (id, callback) => {
-  Admin.findById(id, callback);
+const getUserById = (id, cb) => {
+  Admin.findById(id, cb);
 };
 
 module.exports = {
