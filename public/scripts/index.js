@@ -19,16 +19,14 @@ window.index = (function () {
     req.onload = function () {
       if (req.status === 200) {
         var data = JSON.parse(req.response);
-
         if (data.length > 0) {
-          waypointsFromDatabase = data[0].run.mapDetails;
+          console.log(data[0]);
+          waypointsFromDatabase = data[0].mapDetails;
           initMap(data);
           fillForm(data);
         } else {
           initMap([{
-            run: {
-              startPoint: locationInfo
-            }
+            startPoint: locationInfo
           }]);
         }
       } else {
@@ -42,7 +40,8 @@ window.index = (function () {
   }
 
   function fillForm (response) {
-    var data = response.length === 0 ? '' : response[0].run;
+    console.log(response);
+    var data = response.length === 0 ? '' : response[0];
     var textareas = [].slice.call(document.querySelectorAll('textarea'));
     textareas.forEach(function (textarea) {
       if (textarea.name in data) {

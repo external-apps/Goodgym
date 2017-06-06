@@ -5,8 +5,13 @@ window.home = (function () {
 
   var taskInfo = [].slice.call(document.querySelectorAll('textarea'));
 
+  window.addEventListener('load', function () {
+    var registerButton = document.getElementsByClassName('_yoti-verify-button')[0];
+    registerButton.href = window.location.origin + '/qr' + window.location.pathname;
+    index.getRun();
+  });
+
   var saveButton = document.getElementsByClassName('button-container__save-button')[0];
-  window.addEventListener('load', index.getRun);
   saveButton.addEventListener('click', saveToDatabase);
 
   var sendEmailButton = document.getElementsByClassName('button-container__send-email-button')[0];

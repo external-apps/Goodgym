@@ -21,13 +21,29 @@ conn.once('open', () => {
   console.log('We are connected!');
 });
 
-// create a schema
-const GoodGymSchema = new Schema({
-  run: Object
+const runSchema = new Schema({
+  runId: { type: String, trim: true, unique: true },
+  task: { type: String, trim: true },
+  location: { type: String, trim: true },
+  purpose: { type: String, trim: true },
+  contact: { type: String, trim: true },
+  risk: { type: String, trim: true },
+  email: { type: String, trim: true, lowercase: true },
+  startPoint: { type: String, trim: true },
+  endPoint: { type: String, trim: true },
+  mapDetails: { type: Array }
 });
 
-// the schema is useless so far
-// we need to create a model using it
-const GoodGymDB = mongoose.model('GoodGymDB', GoodGymSchema);
+const Run = mongoose.model('Run', runSchema);
 
-module.exports = GoodGymDB;
+const adminSchema = new Schema({
+  username: { type: String, required: true, trim: true, unique: true },
+  password: { type: String, required: true, trim: true }
+});
+
+const Admin = mongoose.model('Admin', adminSchema);
+
+module.exports = {
+  Run,
+  Admin
+};

@@ -15,9 +15,9 @@ const home = (req, res) => {
         run: run,
         apiKey: apiKey,
         scripts: [
-          '/scripts/index.js',
-          '/scripts/home.js',
           '/scripts/google-maps.js',
+          '/scripts/home.js',
+          '/scripts/index.js',
           'anime.min.js',
           '/scripts/yoti-init.js'
         ]

@@ -9,12 +9,21 @@
   <script src="https://sdk.yoti.com/clients/browser.js"></script>
 </head>
 <body>
+  {{#if user}}
+    <nav class="nav-container">
+      <a href="/logout" class="button-logout">Logout</a>
+    </nav>
+  {{/if}}
 
   {{{ body }}}
 
   {{#each scripts}}
     <script type="text/javascript" src="{{this}}"></script>
   {{/each}}
+
+  <script>
+    _ybg.init()
+  </script>
 
 </body>
 </html>

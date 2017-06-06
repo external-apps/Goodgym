@@ -1,21 +1,21 @@
-const GoodGymDB = require('./db-connection');
+const { Run } = require('./db-connection');
 
 const updateRun = (inputRun) => {
   const updateOption = {
     '$set': {
-      'run.mapDetails': inputRun.mapDetails,
-      'run.startPoint': inputRun.startPoint,
-      'run.endPoint': inputRun.endPoint,
-      'run.task': inputRun.task,
-      'run.location': inputRun.location,
-      'run.purpose': inputRun.purpose,
-      'run.contact': inputRun.contact,
-      'run.risk': inputRun.risk,
-      'run.email': inputRun.email
+      task: inputRun.task,
+      location: inputRun.location,
+      purpose: inputRun.purpose,
+      contact: inputRun.contact,
+      risk: inputRun.risk,
+      email: inputRun.email,
+      mapDetails: inputRun.mapDetails,
+      startPoint: inputRun.startPoint,
+      endPoint: inputRun.endPoint
     }
   };
 
-  GoodGymDB.findOneAndUpdate({'run.runId': inputRun.runId}, updateOption, (err, run) => {
+  Run.findOneAndUpdate({runId: inputRun.runId}, updateOption, (err, run) => {
     if (err) throw err;
     console.log(run, 'Updated run!');
   });

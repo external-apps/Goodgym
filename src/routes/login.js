@@ -1,9 +1,5 @@
 const login = (req, res) => {
-  res.render('login', {
-    scripts: [
-      '/scripts/login.js'
-    ]
-  });
+  res.render('login');
 };
 
 module.exports = login;
