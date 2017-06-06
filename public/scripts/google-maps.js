@@ -25,9 +25,9 @@ function initMap (data) {
     }
   });
 
-  var startPoint = data[0].startPoint;
-  var endPoint = data[0].endPoint || data[0].startPoint;
-  waypoints = data[0].mapDetails || [];
+  var startPoint = data.startPoint;
+  var endPoint = data.endPoint || data.startPoint;
+  waypoints = data.mapDetails || [];
 
   displayRoute(startPoint, endPoint, directionsService, directionsDisplay, waypoints);
 }
@@ -66,7 +66,7 @@ function renderDistance (total) {
 
 function clearMap () {
   console.log('clear map');
-  initMap([{
+  initMap({
     startPoint: home.taskInfo[1].value
-  }]);
+  });
 };

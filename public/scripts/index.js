@@ -20,14 +20,14 @@ window.index = (function () {
     req.onload = function () {
       if (req.status === 200) {
         var data = JSON.parse(req.response);
-        if (data.length > 0) {
-          waypointsFromDatabase = data[0].mapDetails;
+        if (data) {
+          waypointsFromDatabase = data.mapDetails;
           initMap(data);
           fillForm(data);
         } else {
-          initMap([{
+          initMap({
             startPoint: locationInfo
-          }]);
+          });
         }
       } else {
         throw new Error(req.statusText);
@@ -40,14 +40,6 @@ window.index = (function () {
   }
 
   function fillForm (response) {
-<<<<<<< HEAD
-    var data = response.length === 0 ? '' : response[0];
-||||||| merged common ancestors
-    if (!response[0]) return;
-    var data = response[0];
-=======
-    if (!response) return;
->>>>>>> master
     var textareas = [].slice.call(document.querySelectorAll('textarea'));
     textareas.forEach(function (textarea) {
       if (textarea.name in response) {
