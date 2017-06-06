@@ -6,12 +6,12 @@ const postRun = (req, res) => {
     return;
   }
   const body = req.body;
-  addToDatabase(body, (err, body) => {
+  addToDatabase(body, (err) => {
     if (err) {
       console.log(err);
       res.send('POST request not made!');
     } else {
-      res.send('run added to database');
+      res.send('Run added to database');
     }
   });
 };

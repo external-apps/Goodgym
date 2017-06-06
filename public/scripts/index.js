@@ -40,11 +40,18 @@ window.index = (function () {
   }
 
   function fillForm (response) {
+<<<<<<< HEAD
     var data = response.length === 0 ? '' : response[0];
+||||||| merged common ancestors
+    if (!response[0]) return;
+    var data = response[0];
+=======
+    if (!response) return;
+>>>>>>> master
     var textareas = [].slice.call(document.querySelectorAll('textarea'));
     textareas.forEach(function (textarea) {
-      if (textarea.name in data) {
-        textarea.value = data[textarea.name];
+      if (textarea.name in response) {
+        textarea.value = response[textarea.name];
       }
     });
   }
