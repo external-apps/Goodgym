@@ -1,4 +1,3 @@
-require('env2')(`${__dirname}/../../.env`);
 const apiKey = process.env.API_KEY;
 const getRun = require('../helpers/get-run-from-goodgym');
 

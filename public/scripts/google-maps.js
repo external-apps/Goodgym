@@ -1,13 +1,11 @@
 /* global alert index home google */
+'use strict';
 
 var waypoints = [];
-var destination = '';
 var clearMapButton = document.querySelector('.clear-map');
 clearMapButton.addEventListener('click', clearMap);
 
 function initMap (data) {
-
-  console.log(data);
   var map = new google.maps.Map(document.getElementById('map'));
   var directionsService = new google.maps.DirectionsService();
   var directionsDisplay = new google.maps.DirectionsRenderer({
@@ -16,16 +14,17 @@ function initMap (data) {
   });
 
   directionsDisplay.addListener('directions_changed', function () {
-    waypoints = directionsDisplay.getDirections().routes[0].legs[0].via_waypoint;
-    destination = directionsDisplay.getDirections().routes[0].legs[0].end_address;
-    computeTotalDistance(directionsDisplay.getDirections());
-    var legs = directionsDisplay.getDirections().routes[0].legs;
+    var directions = directionsDisplay.getDirections();
+    var legs = directions.routes[0].legs[0];
+    waypoints = legs.via_waypoint;
+    index.destination = legs.end_address;
+    computeTotalDistance(directions);
+
     if (legs.length > 1) {
-      destination = legs[legs.length - 1].end_address;
+      index.destination = legs[legs.length - 1].end_address;
     }
   });
 
-  console.log(data[0]);
   var startPoint = data[0].startPoint;
   var endPoint = data[0].endPoint || data[0].startPoint;
   waypoints = data[0].mapDetails || [];
@@ -34,10 +33,10 @@ function initMap (data) {
 }
 
 function displayRoute (startPoint, endPoint, service, display, waypoints) {
-  var points = [];
-  waypoints.forEach(function (point) {
-    points.push({ location: new google.maps.LatLng({lat: point.location.lat, lng: point.location.lng}) });
-  });
+  var points = waypoints
+    .map(function (pt) { return { lat: pt.location.lat, lng: pt.location.lng }; })
+    .map(function (latlng) { return new google.maps.LatLng(latlng); })
+    .map(function (latlng) { return { location: latlng }; });
   service.route({
     origin: startPoint,
     destination: endPoint,
@@ -54,18 +53,19 @@ function displayRoute (startPoint, endPoint, service, display, waypoints) {
 
 function computeTotalDistance (result) {
   if (!result) { return; }
-  var total = 0;
   var myroute = result.routes[0];
-  for (var i = 0; i < myroute.legs.length; i++) {
-    total += myroute.legs[i].distance.value;
-  }
-  total = total / 1000;
-  document.getElementById('total').innerHTML = total + ' km';
+  var total = myroute.legs
+    .map(function (leg) { return leg.distance.value; })
+    .reduce(function (accum, distance) { return accum + distance; }, 0);
+  renderDistance(total);
+}
+
+function renderDistance (total) {
+  document.getElementById('total').innerHTML = `${total / 1000}` + ' km';
 }
 
 function clearMap () {
   console.log('clear map');
-  index.waypointsFromDatabase = [];
   initMap([{
     startPoint: home.taskInfo[1].value
   }]);

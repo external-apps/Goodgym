@@ -1,4 +1,3 @@
-require('env2')(`${__dirname}/../../.env`);
 const SDK_ID = process.env.CLIENT_SDK_ID;
 const PEM = process.env.SECURITY_PEM;
 

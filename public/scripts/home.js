@@ -1,4 +1,4 @@
-/* global index maps waypoints destination anime */
+/* global index maps waypoints anime */
 
 window.home = (function () {
   'use strict';
@@ -25,7 +25,7 @@ window.home = (function () {
       emailAddress: document.getElementsByClassName('email-container__email-input')[0].value,
       qrAddress: window.location.origin + '/qr' + window.location.pathname
     };
-    index.httpPostRequest(emailBody, '/send-qr-email/:id');
+    index.httpPostRequest(emailBody, '/send-qr-email' + window.location.pathname);
   });
 
   function saveToDatabase () {
@@ -40,7 +40,7 @@ window.home = (function () {
     var taskObj = {
       mapDetails: waypoints,
       startPoint: taskInfo[1].value,
-      endPoint: destination,
+      endPoint: index.destination,
       task: taskInfo[0].value,
       location: taskInfo[1].value,
       purpose: taskInfo[2].value,
@@ -50,7 +50,7 @@ window.home = (function () {
       runId: runId
     };
 
-    index.httpPostRequest(taskObj, '/post-run/:id');
+    index.httpPostRequest(taskObj, '/post-run' + window.location.pathname);
     triggerVerification(
       document.querySelector('.button-container__save-button'),
       document.querySelector('.button-container__save-verification-button'),

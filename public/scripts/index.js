@@ -3,6 +3,7 @@
 window.index = (function () {
   'use strict';
 
+  var destination = '';
   var waypointsFromDatabase = [];
   var registerButton = document.getElementsByClassName('_yoti-verify-button')[0];
   if (registerButton) {
@@ -20,7 +21,6 @@ window.index = (function () {
       if (req.status === 200) {
         var data = JSON.parse(req.response);
         if (data.length > 0) {
-          console.log(data[0]);
           waypointsFromDatabase = data[0].mapDetails;
           initMap(data);
           fillForm(data);
@@ -40,7 +40,6 @@ window.index = (function () {
   }
 
   function fillForm (response) {
-    console.log(response);
     var data = response.length === 0 ? '' : response[0];
     var textareas = [].slice.call(document.querySelectorAll('textarea'));
     textareas.forEach(function (textarea) {
@@ -66,6 +65,7 @@ window.index = (function () {
 
   return {
     getRun: getRun,
+    destination: destination,
     httpPostRequest: httpPostRequest,
     waypointsFromDatabase: waypointsFromDatabase
   };
