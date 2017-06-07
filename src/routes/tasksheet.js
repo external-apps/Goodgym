@@ -9,7 +9,12 @@ const taskSheet = (req, res) => {
         res.render('error', { error: 'No run found in our database!' });
         return;
       }
-      res.render('task-sheet', run);
+      res.render('task-sheet', {
+        run: run,
+        scripts: [
+          '/scripts/task-sheet.js'
+        ]
+      });
     });
   }
 };

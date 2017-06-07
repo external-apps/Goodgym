@@ -1,4 +1,3 @@
-.nav-container,
 .home-container {
   @extend %main-container;
 }
@@ -53,7 +52,6 @@
   text-align: center;
   padding: 5px;
   height: 29px;
-  margin-right: 10px;
 }
 
 .button-container__send-email-button,
