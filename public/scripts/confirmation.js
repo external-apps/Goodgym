@@ -1,4 +1,4 @@
-/* global app sessionStorage */
+/* global index sessionStorage */
 
 (function () {
   'use strict';
@@ -9,7 +9,7 @@
   });
 
   var taskSheetLocation = window.location.origin + '/task-sheet/' + sessionStorage.run_id;
-  app.httpPostRequest({
+  index.httpPostRequest({
     taskSheetURL: taskSheetLocation,
     firstName: document.getElementsByClassName('confirmation-body__firstName')[0].innerText,
     emailAddress: document.getElementsByClassName('confirmation-body__emailAddress')[0].innerText
