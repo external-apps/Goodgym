@@ -1,7 +1,27 @@
-/* global index maps waypoints anime */
+/* global index anime */
 
 window.home = (function () {
   'use strict';
+
+  var waypointsFromDatabase = [];
+  function addToWaypoints (points) {
+    waypointsFromDatabase = points;
+  }
+
+  var destination;
+  function setDestination (place) {
+    destination = place;
+  }
+
+  var waypoints;
+  function setWaypoints (points) {
+    waypoints = points;
+  }
+
+  function removePoints () {
+    waypointsFromDatabase = [];
+    destination = null;
+  }
 
   var taskInfo = [].slice.call(document.querySelectorAll('textarea'));
 
@@ -30,17 +50,16 @@ window.home = (function () {
 
   function saveToDatabase () {
     var runId = window.location.pathname.slice(1);
-
-    index.waypointsFromDatabase.forEach(function (point) {
-      if (maps.waypoints.indexOf(point) === -1) {
-        maps.waypoints.push(point);
+    waypoints.forEach(function (point) {
+      if (waypointsFromDatabase.indexOf(point) === -1) {
+        waypointsFromDatabase.push(point);
       }
     });
 
     var taskObj = {
-      mapDetails: waypoints,
+      mapDetails: waypointsFromDatabase,
       startPoint: taskInfo[1].value,
-      endPoint: index.destination,
+      endPoint: destination,
       task: taskInfo[0].value,
       location: taskInfo[1].value,
       purpose: taskInfo[2].value,
@@ -89,6 +108,10 @@ window.home = (function () {
   }
 
   return {
-    taskInfo: taskInfo
+    taskInfo: taskInfo,
+    addToWaypoints: addToWaypoints,
+    removePoints: removePoints,
+    setDestination: setDestination,
+    setWaypoints: setWaypoints
   };
 })();

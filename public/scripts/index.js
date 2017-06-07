@@ -1,10 +1,8 @@
-/* global initMap XMLHttpRequest */
+/* global map home XMLHttpRequest */
 
 window.index = (function () {
   'use strict';
 
-  var destination = '';
-  var waypointsFromDatabase = [];
   var registerButton = document.getElementsByClassName('_yoti-verify-button')[0];
   if (registerButton) {
     registerButton.href = window.location.origin + '/qr' + window.location.pathname;
@@ -21,11 +19,11 @@ window.index = (function () {
       if (req.status === 200) {
         var data = JSON.parse(req.response);
         if (data) {
-          waypointsFromDatabase = data.mapDetails;
-          initMap(data);
+          home.addToWaypoints(data.mapDetails);
+          map.initMap(data);
           fillForm(data);
         } else {
-          initMap({
+          map.initMap({
             startPoint: locationInfo
           });
         }
@@ -64,8 +62,6 @@ window.index = (function () {
 
   return {
     getRun: getRun,
-    destination: destination,
-    httpPostRequest: httpPostRequest,
-    waypointsFromDatabase: waypointsFromDatabase
+    httpPostRequest: httpPostRequest
   };
 })();
