@@ -14,7 +14,7 @@
 
       <div class="location form">
         <h4>Location</h4>
-        <textarea name="location">{{ run.data.location.streetAddress }}, {{ run.data.location.addressLocality }}, {{ run.data.location.postalCode }} </textarea>
+        <textarea name="location" class="location-info">{{ run.data.location.streetAddress }}, {{ run.data.location.addressLocality }}, {{ run.data.location.postalCode }} </textarea>
       </div>
 
       <div class="purpose form">
@@ -27,6 +27,7 @@
       <div class="map form">
         <h4>Map</h4>
         <div class="google-map">
+          {{> google-map }}
         </div>
       </div>
 
@@ -71,3 +72,5 @@
     </button>
   </div>
 </div>
+
+<script async defer src="{{ apiKey }}"></script>

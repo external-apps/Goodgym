@@ -1,4 +1,5 @@
-const getRun = require('../helpers/get-run-from-goodgym.js');
+const apiKey = process.env.API_KEY;
+const getRun = require('../helpers/get-run-from-goodgym');
 
 const home = (req, res) => {
   const paramId = req.params.id;
@@ -11,10 +12,13 @@ const home = (req, res) => {
       }
       res.render('home', {
         run: run,
+        apiKey: apiKey,
         scripts: [
-          '/scripts/index.js',
+          '/scripts/google-maps.js',
           '/scripts/home.js',
-          'anime.min.js'
+          '/scripts/index.js',
+          'anime.min.js',
+          '/scripts/yoti-init.js'
         ]
       });
     });

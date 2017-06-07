@@ -1,12 +1,34 @@
-/* global app anime */
+/* global index anime */
 
-(function () {
+window.home = (function () {
   'use strict';
+
+  var waypointsFromDatabase = [];
+  function addToWaypoints (points) {
+    waypointsFromDatabase = points;
+  }
+
+  var destination;
+  function setDestination (place) {
+    destination = place;
+  }
+
+  var waypoints;
+  function setWaypoints (points) {
+    waypoints = points;
+  }
+
+  function removePoints () {
+    waypointsFromDatabase = [];
+    destination = null;
+  }
+
+  var taskInfo = [].slice.call(document.querySelectorAll('textarea'));
 
   window.addEventListener('load', function () {
     var registerButton = document.getElementsByClassName('_yoti-verify-button')[0];
     registerButton.href = window.location.origin + '/qr' + window.location.pathname;
-    app.getRun();
+    index.getRun();
   });
 
   var saveButton = document.getElementsByClassName('button-container__save-button')[0];
@@ -23,14 +45,31 @@
       emailAddress: document.getElementsByClassName('email-container__email-input')[0].value,
       qrAddress: window.location.origin + '/qr' + window.location.pathname
     };
-    app.httpPostRequest(emailBody, '/send-qr-email/:id');
+    index.httpPostRequest(emailBody, '/send-qr-email' + window.location.pathname);
   });
 
   function saveToDatabase () {
     var runId = window.location.pathname.slice(1);
-    var taskInfoArray = [].slice.call(document.querySelectorAll('textarea'));
-    var taskObj = new app.Task(taskInfoArray, runId);
-    app.httpPostRequest(taskObj, '/post-run/:id');
+    waypoints.forEach(function (point) {
+      if (waypointsFromDatabase.indexOf(point) === -1) {
+        waypointsFromDatabase.push(point);
+      }
+    });
+
+    var taskObj = {
+      mapDetails: waypointsFromDatabase,
+      startPoint: taskInfo[1].value,
+      endPoint: destination,
+      task: taskInfo[0].value,
+      location: taskInfo[1].value,
+      purpose: taskInfo[2].value,
+      contact: taskInfo[3].value,
+      risk: taskInfo[4].value,
+      email: taskInfo[5].value,
+      runId: runId
+    };
+
+    index.httpPostRequest(taskObj, '/post-run' + window.location.pathname);
     triggerVerification(
       document.querySelector('.button-container__save-button'),
       document.querySelector('.button-container__save-verification-button'),
@@ -67,4 +106,12 @@
       }
     });
   }
+
+  return {
+    taskInfo: taskInfo,
+    addToWaypoints: addToWaypoints,
+    removePoints: removePoints,
+    setDestination: setDestination,
+    setWaypoints: setWaypoints
+  };
 })();

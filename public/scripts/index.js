@@ -1,29 +1,32 @@
-/* global XMLHttpRequest */
+/* global map home XMLHttpRequest */
 
-window.app = (function () {
+window.index = (function () {
   'use strict';
 
-  function Task (tasks, runId) {
-    this.runId = runId;
-    this.task = tasks[0].value;
-    this.location = tasks[1].value;
-    this.purpose = tasks[2].value;
-    this.contact = tasks[3].value;
-    this.risk = tasks[4].value;
-    this.email = tasks[5].value;
+  var registerButton = document.getElementsByClassName('_yoti-verify-button')[0];
+  if (registerButton) {
+    registerButton.href = window.location.origin + '/qr' + window.location.pathname;
   }
 
   function getRun () {
-    var data = {
-      runId: window.location.pathname
-    };
-    var url = window.location.origin + '/get-run' + data.runId;
+    var locationInfo = document.getElementsByClassName('location-info')[0].value;
+    var runId = window.location.pathname;
+    var url = window.location.origin + '/get-run' + runId;
     var req = new XMLHttpRequest();
 
     req.open('GET', url);
     req.onload = function () {
       if (req.status === 200) {
-        fillForm(JSON.parse(req.response));
+        var data = JSON.parse(req.response);
+        if (data) {
+          home.addToWaypoints(data.mapDetails);
+          map.initMap(data);
+          fillForm(data);
+        } else {
+          map.initMap({
+            startPoint: locationInfo
+          });
+        }
       } else {
         throw new Error(req.statusText);
       }
@@ -35,7 +38,6 @@ window.app = (function () {
   }
 
   function fillForm (response) {
-    if (!response) return;
     var textareas = [].slice.call(document.querySelectorAll('textarea'));
     textareas.forEach(function (textarea) {
       if (textarea.name in response) {
@@ -60,7 +62,6 @@ window.app = (function () {
 
   return {
     getRun: getRun,
-    Task: Task,
     httpPostRequest: httpPostRequest
   };
 })();

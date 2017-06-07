@@ -28,7 +28,10 @@ const runSchema = new Schema({
   purpose: { type: String, trim: true },
   contact: { type: String, trim: true },
   risk: { type: String, trim: true },
-  email: { type: String, trim: true, lowercase: true }
+  email: { type: String, trim: true, lowercase: true },
+  startPoint: { type: String, trim: true },
+  endPoint: { type: String, trim: true },
+  mapDetails: { type: Array }
 });
 
 const Run = mongoose.model('Run', runSchema);
