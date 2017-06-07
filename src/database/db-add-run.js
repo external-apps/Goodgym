@@ -8,7 +8,10 @@ const addRunToDB = (inputRun, cb) => {
       purpose: inputRun.purpose,
       contact: inputRun.contact,
       risk: inputRun.risk,
-      email: inputRun.email
+      email: inputRun.email,
+      mapDetails: inputRun.mapDetails,
+      startPoint: inputRun.startPoint,
+      endPoint: inputRun.endPoint
     }
   };
 

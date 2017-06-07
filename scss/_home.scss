@@ -34,6 +34,11 @@
   }
 }
 
+.map-description {
+  margin-top: 4px;
+  font-family: $body-font;
+}
+
 .button-container {
   @extend %button-container;
 }
@@ -87,6 +92,12 @@
   height: 350px;
 }
 
+#map {
+  position: relative;
+  width: 100%;
+  height: 90%;
+}
+
 .email-container {
   height: 75px;
   clear: both;
@@ -113,6 +124,12 @@
 
 .home-logo {
   @extend %goodgym-logo;
+}
+
+.clear-map {
+  margin-left: 20px;
+  color: #ed1c24;
+  cursor: pointer;
 }
 
 @media screen and (min-width: 768px){
