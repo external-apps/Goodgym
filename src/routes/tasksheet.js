@@ -10,10 +10,7 @@ const taskSheet = (req, res) => {
         return;
       }
       res.render('task-sheet', {
-        run: run,
-        scripts: [
-          '/scripts/task-sheet.js'
-        ]
+        run: run
       });
     });
   }

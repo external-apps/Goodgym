@@ -55,11 +55,6 @@ passport.deserializeUser((id, done) => {
   });
 });
 
-app.use((req, res, next) => {
-  res.locals.user = req.user || null;
-  next();
-});
-
 app.use(express.static('public'));
 app.use('/', routes);
 
