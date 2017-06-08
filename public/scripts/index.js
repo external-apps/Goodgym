@@ -13,7 +13,7 @@ window.index = (function () {
 
     req.addEventListener('load', function () {
       if (req.status === 200) {
-        if (method === 'GET'.toUpperCase()) {
+        if (method.toUpperCase() === 'GET') {
           cb(null, JSON.parse(req.responseText));
         } else {
           console.log(req.responseText);
@@ -25,7 +25,7 @@ window.index = (function () {
     req.addEventListener('error', cb);
 
     req.open(method, url);
-    if (method === 'POST'.toUpperCase()) {
+    if (method.toUpperCase() === 'POST') {
       req.setRequestHeader('Content-Type', 'application/json');
     }
 
