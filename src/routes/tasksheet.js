@@ -18,7 +18,10 @@
 
 const taskSheet = (req, res) => {
   res.render('task-sheet', {
-    scripts: ['/scripts/tasksheet.js']
+    scripts: [
+      '/scripts/index.js',
+      '/scripts/tasksheet.js'
+    ]
   });
 };
 
