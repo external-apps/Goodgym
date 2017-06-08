@@ -13,6 +13,7 @@ const home = (req, res) => {
       res.render('home', {
         run: run,
         apiKey: apiKey,
+        user: req.user,
         scripts: [
           '/scripts/google-maps.js',
           '/scripts/home.js',
