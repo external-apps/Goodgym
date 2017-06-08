@@ -26,15 +26,15 @@ window.home = (function () {
   var taskInfo = [].slice.call(document.querySelectorAll('textarea'));
 
   window.addEventListener('load', function () {
-    var registerButton = document.getElementsByClassName('_yoti-verify-button')[0];
+    var registerButton = document.querySelector('._yoti-verify-button');
     registerButton.href = window.location.origin + '/qr' + window.location.pathname;
     index.getRun();
   });
 
-  var saveButton = document.getElementsByClassName('button-container__save-button')[0];
+  var saveButton = document.querySelector('.button-container__save-button');
   saveButton.addEventListener('click', saveToDatabase);
 
-  var sendEmailButton = document.getElementsByClassName('button-container__send-email-button')[0];
+  var sendEmailButton = document.querySelector('.button-container__send-email-button');
   sendEmailButton.addEventListener('click', function () {
     triggerVerification(
       document.querySelector('.button-container__send-email-button'),
@@ -42,7 +42,7 @@ window.home = (function () {
       document.getElementsByClassName('checkmark')[1]
     );
     var emailBody = {
-      emailAddress: document.getElementsByClassName('email-container__email-input')[0].value,
+      emailAddress: document.querySelector('.email-container__email-input').value,
       qrAddress: window.location.origin + '/qr' + window.location.pathname
     };
     index.httpPostRequest(emailBody, '/send-qr-email' + window.location.pathname);
