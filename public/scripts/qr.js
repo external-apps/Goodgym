@@ -24,13 +24,13 @@
   });
 
   var config = { attributes: true, childList: true, characterData: true };
-  var target = document.getElementsByClassName('qr-container')[0];
+  var target = document.querySelector('.qr-container');
   if (window.location.pathname.split('/')[1] === 'qr') {
     observer.observe(target, config);
   }
 
   function createQR (qrSvg) {
-    var qr = document.getElementsByClassName('qr-image')[0];
+    var qr = document.querySelector('.qr-image');
     qr.classList.remove('display-none');
     qr.src = qrSvg;
   };
