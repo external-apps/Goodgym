@@ -15,6 +15,7 @@
   function handleLoginClick () {
     var loginForm = document.getElementsByClassName('form-container__input')[0];
     var runId = loginForm.value;
+    if (!runId) { return; }
     directToHomePage(runId);
   }
 
