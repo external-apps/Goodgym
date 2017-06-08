@@ -27,26 +27,32 @@ window.home = (function () {
 
   window.addEventListener('load', function () {
     var registerButton = document.getElementsByClassName('_yoti-verify-button')[0];
-    registerButton.href = window.location.origin + '/qr' + window.location.pathname;
+    if (registerButton) {
+      registerButton.href = window.location.origin + '/qr' + window.location.pathname;
+    }
     index.getRun();
   });
 
   var saveButton = document.getElementsByClassName('button-container__save-button')[0];
-  saveButton.addEventListener('click', saveToDatabase);
+  if (saveButton) {
+    saveButton.addEventListener('click', saveToDatabase);
+  }
 
   var sendEmailButton = document.getElementsByClassName('button-container__send-email-button')[0];
-  sendEmailButton.addEventListener('click', function () {
-    triggerVerification(
-      document.querySelector('.button-container__send-email-button'),
-      document.querySelector('.button-container__qr-verification-button'),
-      document.getElementsByClassName('checkmark')[1]
-    );
-    var emailBody = {
-      emailAddress: document.getElementsByClassName('email-container__email-input')[0].value,
-      qrAddress: window.location.origin + '/qr' + window.location.pathname
-    };
-    index.httpPostRequest(emailBody, '/send-qr-email' + window.location.pathname);
-  });
+  if (sendEmailButton) {
+    sendEmailButton.addEventListener('click', function () {
+      triggerVerification(
+        document.querySelector('.button-container__send-email-button'),
+        document.querySelector('.button-container__qr-verification-button'),
+        document.getElementsByClassName('checkmark')[1]
+      );
+      var emailBody = {
+        emailAddress: document.getElementsByClassName('email-container__email-input')[0].value,
+        qrAddress: window.location.origin + '/qr' + window.location.pathname
+      };
+      index.httpPostRequest(emailBody, '/send-qr-email' + window.location.pathname);
+    });
+  }
 
   function saveToDatabase () {
     var runId = window.location.pathname.slice(1);
