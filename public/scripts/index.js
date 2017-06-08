@@ -12,7 +12,7 @@ window.index = (function () {
     var req = new XMLHttpRequest();
 
     req.addEventListener('load', function () {
-      if (req.status === 200 && req.readyState === 4) {
+      if (req.status === 200) {
         if (method === 'GET'.toUpperCase()) {
           cb(null, JSON.parse(req.responseText));
         } else {
