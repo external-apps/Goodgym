@@ -9,7 +9,7 @@ window.index = (function () {
   }
 
   function getRun () {
-    // var locationInfo = document.getElementsByClassName('location-info')[0].value;
+    var locationInfo = document.getElementsByClassName('location-info')[0].value;
     var runId = window.location.pathname;
     if (runId.indexOf('/task-sheet') !== -1) {
       runId = runId.replace('/task-sheet', '');
@@ -23,12 +23,12 @@ window.index = (function () {
         var data = JSON.parse(req.response);
         if (data) {
           home.addToWaypoints(data.mapDetails);
-          // map.initMap(data);
+          map.initMap(data);
           fillForm(data);
         } else {
-          // map.initMap({
-          //   startPoint: locationInfo
-          // });
+          map.initMap({
+            startPoint: locationInfo
+          });
         }
       } else {
         throw new Error(req.statusText);
