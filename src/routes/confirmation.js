@@ -5,6 +5,8 @@ if (!SDK_ID) {
   throw new Error('Enviroment variable CLIENT_SDK_ID must be set.');
 }
 
+const addRunToDB = require('../database/db-add-run');
+
 const YotiClient = require('yoti-node-sdk');
 let yotiClient = new YotiClient(SDK_ID, PEM);
 
@@ -16,9 +18,14 @@ const confirmation = (req, res) => {
   }
   yotiClient.getActivityDetails(token).then((activityDetails) => {
     const userProfile = activityDetails.getUserProfile();
+    const firstName = capitalise(userProfile.givenNames.split(' ')[0]);
+    const lastName = capitalise(userProfile.familyName);
+    addRunToDB({
+      runners: `${firstName} ${lastName}`
+    });
     res.render('confirmation', {
-      firstName: capitalise(userProfile.givenNames.split(' ')[0]),
-      lastName: capitalise(userProfile.familyName),
+      firstName: firstName,
+      lastName: lastName,
       emailAddress: userProfile.emailAddress,
       user: req.user,
       scripts: [
