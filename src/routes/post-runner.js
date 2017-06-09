@@ -1,13 +1,12 @@
-const addToDatabase = require('../database/db-add-runner');
+const addRunnerToDatabase = require('../database/db-add-runner');
 
-const postRun = (req, res) => {
+const postRunner = (req, res) => {
   if (process.env.NODE_ENV === 'testing') {
     res.send().status(200);
     return;
   }
   const body = req.body;
-  console.log(body);
-  addToDatabase(body, (err) => {
+  addRunnerToDatabase(body, (err) => {
     if (err) {
       console.log(err);
       res.json('POST request not made!');
@@ -17,4 +16,4 @@ const postRun = (req, res) => {
   });
 };
 
-module.exports = postRun;
+module.exports = postRunner;
