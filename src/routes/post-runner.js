@@ -11,7 +11,7 @@ const postRunner = (req, res) => {
       console.log(err);
       res.json('POST request not made!');
     } else {
-      res.json('Run added to database');
+      res.json('Runner added to database');
     }
   });
 };
