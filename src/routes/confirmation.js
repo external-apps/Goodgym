@@ -5,7 +5,7 @@ if (!SDK_ID) {
   throw new Error('Enviroment variable CLIENT_SDK_ID must be set.');
 }
 
-const addRunnerToDB = require('../database/db-add-run');
+const addRunnerToDB = require('../database/db-add-runner');
 
 const YotiClient = require('yoti-node-sdk');
 let yotiClient = new YotiClient(SDK_ID, PEM);
