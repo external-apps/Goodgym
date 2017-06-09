@@ -1,8 +1,8 @@
 (function () {
   'use strict';
 
-  var loginButton = document.getElementsByClassName('button-container__login-button')[0];
-  var formInput = document.getElementsByClassName('form-container__input')[0];
+  var loginButton = document.querySelector('.button-container__login-button');
+  var formInput = document.querySelector('.form-container__input');
 
   loginButton.addEventListener('click', handleLoginClick);
   formInput.addEventListener('keypress', function (event) {
@@ -13,7 +13,7 @@
   });
 
   function handleLoginClick () {
-    var loginForm = document.getElementsByClassName('form-container__input')[0];
+    var loginForm = document.querySelector('.form-container__input');
     var runId = loginForm.value;
     if (!runId) { return; }
     directToHomePage(runId);

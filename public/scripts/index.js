@@ -3,13 +3,13 @@
 window.index = (function () {
   'use strict';
 
-  var registerButton = document.getElementsByClassName('_yoti-verify-button')[0];
+  var registerButton = document.querySelector('._yoti-verify-button');
   if (registerButton) {
     registerButton.href = window.location.origin + '/qr' + window.location.pathname;
   }
 
   function getRun () {
-    var locationInfo = document.getElementsByClassName('location-info')[0].value;
+    var locationInfo = document.querySelector('.location-info').value;
     var runId = window.location.pathname;
     var url = window.location.origin + '/get-run' + runId;
     var req = new XMLHttpRequest();
