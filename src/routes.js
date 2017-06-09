@@ -29,7 +29,7 @@ router.get('/task-sheet/:id', tasksheet);
 router.get('/get-run/:id', getRun);
 router.post('/post-run/:id', postRun);
 router.post('/send-qr-email/:id', sendEmail);
-router.post('/send-task-sheet/:id', sendTaskSheet);
+router.post('/send-task-sheet', sendTaskSheet);
 router.post('/login',
 passport.authenticate('local', {successReturnToOrRedirect: '/run', failureRedirect: '/login'}));
 
