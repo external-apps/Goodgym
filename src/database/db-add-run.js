@@ -12,9 +12,6 @@ const addRunToDB = (inputRun, cb) => {
       mapDetails: inputRun.mapDetails,
       startPoint: inputRun.startPoint,
       endPoint: inputRun.endPoint
-    },
-    '$addToSet': {
-      runners: inputRun.runners
     }
   };
 

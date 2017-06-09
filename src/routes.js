@@ -11,6 +11,7 @@ const qr = require('./routes/qr');
 const tasksheet = require('./routes/tasksheet');
 const getRun = require('./routes/get-run');
 const postRun = require('./routes/post-run');
+const postRunner = require('./routes/post-runner');
 const sendEmail = require('./routes/send-qr-email');
 const sendTaskSheet = require('./routes/send-task-sheet');
 
@@ -27,6 +28,7 @@ router.get('/:id', authMiddleware, home);
 router.get('/qr/:id', authMiddleware, qr);
 router.get('/task-sheet/:id', tasksheet);
 router.get('/get-run/:id', getRun);
+router.post('/add-runner', postRunner);
 router.post('/post-run/:id', postRun);
 router.post('/send-qr-email/:id', sendEmail);
 router.post('/send-task-sheet', sendTaskSheet);

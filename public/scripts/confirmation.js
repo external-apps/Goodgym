@@ -9,6 +9,12 @@
   });
 
   var taskSheetLocation = window.location.origin + '/task-sheet/' + sessionStorage.run_id;
+
+  index.httpPostRequest({
+    runId: sessionStorage.run_id,
+    runner: document.querySelector('.confirmation-body__emailAddress').innerText
+  }, '/add-runner', console.log);
+
   index.httpPostRequest({
     taskSheetURL: taskSheetLocation,
     firstName: document.querySelector('.confirmation-body__firstName').innerText,
