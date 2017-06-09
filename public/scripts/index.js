@@ -8,6 +8,35 @@ window.index = (function () {
     registerButton.href = window.location.origin + '/qr' + window.location.pathname;
   }
 
+  function request (method, url, body, cb) {
+    var req = new XMLHttpRequest();
+
+    req.addEventListener('load', function () {
+      if (req.status === 200) {
+        cb(null, JSON.parse(req.responseText));
+      } else {
+        cb(new Error(req.statusText));
+      }
+    });
+    req.addEventListener('error', cb);
+
+    req.open(method, url);
+
+    if (method.toUpperCase() === 'POST') {
+      req.setRequestHeader('Content-Type', 'application/json');
+    }
+
+    req.send(JSON.stringify(body));
+  }
+
+  function get (url, cb) {
+    request('GET', url, null, cb);
+  }
+
+  function httpPostRequest (body, url, cb) {
+    request('POST', url, body, cb);
+  }
+
   function getRun () {
     var locationInfo = document.getElementsByClassName('location-info')[0].value;
     var runId = window.location.pathname;
@@ -15,29 +44,18 @@ window.index = (function () {
       runId = runId.replace('/task-sheet', '');
     }
     var url = window.location.origin + '/get-run' + runId;
-    var req = new XMLHttpRequest();
-
-    req.open('GET', url);
-    req.onload = function () {
-      if (req.status === 200) {
-        var data = JSON.parse(req.response);
-        if (data) {
-          home.addToWaypoints(data.mapDetails);
-          map.initMap(data);
-          fillForm(data);
-        } else {
-          map.initMap({
-            startPoint: locationInfo
-          });
-        }
+    get(url, function (err, data) {
+      if (err) return console.log(err);
+      if (data) {
+        home.addToWaypoints(data.mapDetails);
+        map.initMap(data);
+        fillForm(data);
       } else {
-        throw new Error(req.statusText);
+        map.initMap({
+          startPoint: locationInfo
+        });
       }
-    };
-    req.onerror = function () {
-      throw new Error('Network error');
-    };
-    req.send();
+    });
   }
 
   function fillForm (response) {
@@ -47,20 +65,6 @@ window.index = (function () {
         textarea.value = response[textarea.name];
       }
     });
-  }
-
-  function httpPostRequest (info, url) {
-    var http = new XMLHttpRequest();
-    http.open('POST', url, true);
-    http.setRequestHeader('Content-Type', 'application/json');
-    var payload = JSON.stringify(info);
-
-    http.onreadystatechange = function () {
-      if (http.readyState === 4 && http.status === 200) {
-        console.log(http.responseText);
-      }
-    };
-    http.send(payload);
   }
 
   return {

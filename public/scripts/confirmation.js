@@ -13,5 +13,5 @@
     taskSheetURL: taskSheetLocation,
     firstName: document.getElementsByClassName('confirmation-body__firstName')[0].innerText,
     emailAddress: document.getElementsByClassName('confirmation-body__emailAddress')[0].innerText
-  }, '/send-task-sheet/:id');
+  }, '/send-task-sheet/:id', console.log);
 })();

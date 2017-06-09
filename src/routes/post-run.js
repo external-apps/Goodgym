@@ -9,9 +9,9 @@ const postRun = (req, res) => {
   addToDatabase(body, (err) => {
     if (err) {
       console.log(err);
-      res.send('POST request not made!');
+      res.json('POST request not made!');
     } else {
-      res.send('Run added to database');
+      res.json('Run added to database');
     }
   });
 };

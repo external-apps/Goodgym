@@ -29,8 +29,8 @@ window.home = (function () {
     var registerButton = document.getElementsByClassName('_yoti-verify-button')[0];
     if (registerButton) {
       registerButton.href = window.location.origin + '/qr' + window.location.pathname;
+      index.getRun();
     }
-    index.getRun();
   });
 
   var saveButton = document.getElementsByClassName('button-container__save-button')[0];
@@ -50,7 +50,7 @@ window.home = (function () {
         emailAddress: document.getElementsByClassName('email-container__email-input')[0].value,
         qrAddress: window.location.origin + '/qr' + window.location.pathname
       };
-      index.httpPostRequest(emailBody, '/send-qr-email' + window.location.pathname);
+      index.httpPostRequest(emailBody, '/send-qr-email' + window.location.pathname, console.log);
     });
   }
 
@@ -75,7 +75,7 @@ window.home = (function () {
       runId: runId
     };
 
-    index.httpPostRequest(taskObj, '/post-run' + window.location.pathname);
+    index.httpPostRequest(taskObj, '/post-run' + window.location.pathname, console.log);
     triggerVerification(
       document.querySelector('.button-container__save-button'),
       document.querySelector('.button-container__save-verification-button'),

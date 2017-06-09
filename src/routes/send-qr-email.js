@@ -10,10 +10,10 @@ const sendQREmail = (req, res) => {
     if (err) {
       console.log(err, 'Check that the goodgym1000@gmail.com ' +
             'email account has not been suspended/deactivated');
-      res.send('Email not sent!');
+      res.json('Email not sent!');
     } else {
       console.log(payload);
-      res.send('Email sent');
+      res.json('Email sent');
     }
   });
 };
