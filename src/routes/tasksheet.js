@@ -1,7 +1,7 @@
 const apiKey = process.env.API_KEY;
 
 const taskSheet = (req, res) => {
-  res.render('task-sheet', {
+  res.render('home', {
     apiKey: apiKey,
     scripts: [
       '/scripts/home.js',
