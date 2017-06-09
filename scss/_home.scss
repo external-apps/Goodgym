@@ -96,8 +96,9 @@
   height: 90%;
 }
 
-.email-container {
-  height: 75px;
+.email-container,
+.runners-container {
+  height: 120px;
   clear: both;
 }
 
@@ -107,6 +108,14 @@
 
 .email-container__email-input {
   height: 40px;
+}
+
+.runners-container {
+  margin-top: 27px;
+}
+
+.runner-container__emails  {
+  height: 80px;
 }
 
 .google-map {
