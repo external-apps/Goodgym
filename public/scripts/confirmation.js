@@ -3,7 +3,7 @@
 (function () {
   'use strict';
 
-  var backToQRButton = document.getElementsByClassName('button-container__confirmation-button')[0];
+  var backToQRButton = document.querySelector('.button-container__confirmation-button');
   backToQRButton.addEventListener('click', function () {
     window.location.pathname = '/qr/' + sessionStorage.run_id;
   });
