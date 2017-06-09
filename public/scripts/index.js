@@ -62,7 +62,11 @@ window.index = (function () {
     var textareas = [].slice.call(document.querySelectorAll('textarea'));
     textareas.forEach(function (textarea) {
       if (textarea.name in response) {
-        textarea.value = response[textarea.name];
+        if (textarea.name === 'runners') {
+          textarea.value = response[textarea.name.split(',')].join(', ');
+        } else {
+          textarea.value = response[textarea.name];
+        }
       }
     });
   }

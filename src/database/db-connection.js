@@ -31,6 +31,7 @@ const runSchema = new Schema({
   email: { type: String, trim: true, lowercase: true },
   startPoint: { type: String, trim: true },
   endPoint: { type: String, trim: true },
+  runners: { type: Array },
   mapDetails: { type: Array }
 });
 
