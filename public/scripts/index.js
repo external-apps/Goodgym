@@ -13,11 +13,7 @@ window.index = (function () {
 
     req.addEventListener('load', function () {
       if (req.status === 200) {
-        if (method.toUpperCase() === 'GET') {
-          cb(null, JSON.parse(req.responseText));
-        } else {
-          console.log(req.responseText);
-        }
+        cb(null, JSON.parse(req.responseText));
       } else {
         cb(new Error(req.statusText));
       }
@@ -25,6 +21,7 @@ window.index = (function () {
     req.addEventListener('error', cb);
 
     req.open(method, url);
+
     if (method.toUpperCase() === 'POST') {
       req.setRequestHeader('Content-Type', 'application/json');
     }
@@ -36,8 +33,8 @@ window.index = (function () {
     request('GET', url, null, cb);
   }
 
-  function httpPostRequest (body, url) {
-    request('POST', url, body);
+  function httpPostRequest (body, url, cb) {
+    request('POST', url, body, cb);
   }
 
   function getRun () {

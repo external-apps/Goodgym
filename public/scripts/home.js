@@ -45,7 +45,7 @@ window.home = (function () {
       emailAddress: document.getElementsByClassName('email-container__email-input')[0].value,
       qrAddress: window.location.origin + '/qr' + window.location.pathname
     };
-    index.httpPostRequest(emailBody, '/send-qr-email' + window.location.pathname);
+    index.httpPostRequest(emailBody, '/send-qr-email' + window.location.pathname, console.log);
   });
 
   function saveToDatabase () {
@@ -69,7 +69,7 @@ window.home = (function () {
       runId: runId
     };
 
-    index.httpPostRequest(taskObj, '/post-run' + window.location.pathname);
+    index.httpPostRequest(taskObj, '/post-run' + window.location.pathname, console.log);
     triggerVerification(
       document.querySelector('.button-container__save-button'),
       document.querySelector('.button-container__save-verification-button'),
