@@ -1,4 +1,4 @@
-const sendEmailFunction = require('../send-qr-email');
+const sendEmail = require('../helpers/send-email');
 
 const sendQREmail = (req, res) => {
   if (process.env.NODE_ENV === 'testing') {
@@ -6,7 +6,7 @@ const sendQREmail = (req, res) => {
     return;
   }
   const body = req.body;
-  sendEmailFunction(body, (err, payload) => {
+  sendEmail(body, 'qr-email.hbs', {qrAddress: body.qrAddress}, (err, payload) => {
     if (err) {
       console.log(err, 'Check that the goodgym1000@gmail.com ' +
             'email account has not been suspended/deactivated');
