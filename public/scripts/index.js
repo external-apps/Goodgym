@@ -40,6 +40,9 @@ window.index = (function () {
   function getRun () {
     var locationInfo = document.querySelector('.location-info').value;
     var runId = window.location.pathname;
+    if (runId.indexOf('/task-sheet') !== -1) {
+      runId = runId.replace('/task-sheet', '');
+    }
     var url = window.location.origin + '/get-run' + runId;
     get(url, function (err, data) {
       if (err) return console.log(err);

@@ -27,26 +27,32 @@ window.home = (function () {
 
   window.addEventListener('load', function () {
     var registerButton = document.querySelector('._yoti-verify-button');
-    registerButton.href = window.location.origin + '/qr' + window.location.pathname;
-    index.getRun();
+    if (registerButton) {
+      registerButton.href = window.location.origin + '/qr' + window.location.pathname;
+      index.getRun();
+    }
   });
 
   var saveButton = document.querySelector('.button-container__save-button');
-  saveButton.addEventListener('click', saveToDatabase);
+  if (saveButton) {
+    saveButton.addEventListener('click', saveToDatabase);
+  }
 
   var sendEmailButton = document.querySelector('.button-container__send-email-button');
-  sendEmailButton.addEventListener('click', function () {
-    triggerVerification(
-      document.querySelector('.button-container__send-email-button'),
-      document.querySelector('.button-container__qr-verification-button'),
-      document.getElementsByClassName('checkmark')[1]
-    );
-    var emailBody = {
-      emailAddress: document.querySelector('.email-container__email-input').value,
-      qrAddress: window.location.origin + '/qr' + window.location.pathname
-    };
-    index.httpPostRequest(emailBody, '/send-qr-email' + window.location.pathname, console.log);
-  });
+  if (sendEmailButton) {
+    sendEmailButton.addEventListener('click', function () {
+      triggerVerification(
+        document.querySelector('.button-container__send-email-button'),
+        document.querySelector('.button-container__qr-verification-button'),
+        document.getElementsByClassName('checkmark')[1]
+      );
+      var emailBody = {
+        emailAddress: document.querySelector('.email-container__email-input').value,
+        qrAddress: window.location.origin + '/qr' + window.location.pathname
+      };
+      index.httpPostRequest(emailBody, '/send-qr-email' + window.location.pathname, console.log);
+    });
+  }
 
   function saveToDatabase () {
     var runId = window.location.pathname.slice(1);

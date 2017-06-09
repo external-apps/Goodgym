@@ -1,19 +1,15 @@
-const getRun = require('../helpers/get-run-from-goodgym');
+const apiKey = process.env.API_KEY;
 
 const taskSheet = (req, res) => {
-  const paramId = req.params.id;
-  if (paramId !== 'favicon.ico') {
-    getRun(paramId, (err, run) => {
-      if (err) {
-        console.error(err);
-        res.render('error', { error: 'No run found in our database!' });
-        return;
-      }
-      res.render('task-sheet', {
-        run: run
-      });
-    });
-  }
+  res.render('home', {
+    apiKey: apiKey,
+    scripts: [
+      '/scripts/index.js',
+      '/scripts/tasksheet.js',
+      '/scripts/home.js',
+      '/scripts/google-maps.js'
+    ]
+  });
 };
 
 module.exports = taskSheet;
