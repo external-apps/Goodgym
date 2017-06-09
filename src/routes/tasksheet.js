@@ -4,9 +4,10 @@ const taskSheet = (req, res) => {
   res.render('home', {
     apiKey: apiKey,
     scripts: [
+      '/scripts/index.js',
+      '/scripts/tasksheet.js',
       '/scripts/home.js',
-      '/scripts/google-maps.js',
-      '/scripts/index.js'
+      '/scripts/google-maps.js'
     ]
   });
 };
