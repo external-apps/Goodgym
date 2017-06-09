@@ -11,7 +11,7 @@
   var taskSheetLocation = window.location.origin + '/task-sheet/' + sessionStorage.run_id;
   index.httpPostRequest({
     taskSheetURL: taskSheetLocation,
-    firstName: document.getElementsByClassName('confirmation-body__firstName')[0].innerText,
-    emailAddress: document.getElementsByClassName('confirmation-body__emailAddress')[0].innerText
+    firstName: document.querySelector('.confirmation-body__firstName').innerText,
+    emailAddress: document.querySelector('.confirmation-body__emailAddress').innerText
   }, '/send-task-sheet', console.log);
 })();
