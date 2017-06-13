@@ -39,6 +39,8 @@ window.index = (function () {
 
   function getRun () {
     var locationInfo = document.querySelector('.location-info').value;
+    var destinationInfo = document.querySelector('.destination').innerText;
+    if (destinationInfo === ', , ') { destinationInfo = null; }
     var runId = window.location.pathname;
     if (runId.indexOf('/task-sheet') !== -1) {
       runId = runId.replace('/task-sheet', '');
@@ -52,7 +54,8 @@ window.index = (function () {
         fillForm(data);
       } else {
         map.initMap({
-          startPoint: locationInfo
+          startPoint: locationInfo,
+          endPoint: destinationInfo
         });
       }
     });

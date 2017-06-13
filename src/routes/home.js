@@ -12,6 +12,7 @@ const home = (req, res) => {
       }
       res.render('home', {
         run: run,
+        destination: run.data.toLocation[0],
         apiKey: apiKey,
         user: req.user,
         scripts: [
