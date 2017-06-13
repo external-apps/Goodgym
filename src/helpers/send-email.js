@@ -14,7 +14,7 @@ const transporter = nodemailer.createTransport({
 });
 
 function sendEmail (body, templateName, templateOptions, cb) {
-  const emailTemplate = fs.readFileSync(path.join(__dirname, 'templates', 'views', templateName), 'utf8');
+  const emailTemplate = fs.readFileSync(path.join(__dirname, '..', 'templates', 'views', templateName), 'utf8');
   const template = handlebars.compile(emailTemplate);
   const emailContent = template(templateOptions);
 
