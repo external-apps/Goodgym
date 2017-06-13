@@ -13,13 +13,10 @@ const transporter = nodemailer.createTransport({
   }
 });
 
-function sendTaskSheet (body, cb) {
-  const emailTemplate = fs.readFileSync(path.join(__dirname, 'templates', 'views', 'task-sheet-email.hbs'), 'utf8');
+const sendEmail = (body, templateName, templateOptions, cb) => {
+  const emailTemplate = fs.readFileSync(path.join(__dirname, '..', 'templates', 'views', templateName), 'utf8');
   const template = handlebars.compile(emailTemplate);
-  const emailContent = template({
-    taskSheetURL: body.taskSheetURL,
-    firstName: body.firstName
-  });
+  const emailContent = template(templateOptions);
 
   const mailOptions = {
     from: '"GoodGym" <goodgym1000@gmail.com>',
@@ -35,6 +32,6 @@ function sendTaskSheet (body, cb) {
     }
     return cb(null, `Message ${info.messageId} sent: ${info.response}`);
   });
-}
+};
 
-module.exports = sendTaskSheet;
+module.exports = sendEmail;
