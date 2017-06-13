@@ -13,7 +13,7 @@ const transporter = nodemailer.createTransport({
   }
 });
 
-function sendEmail (body, templateName, templateOptions, cb) {
+const sendEmail = (body, templateName, templateOptions, cb) => {
   const emailTemplate = fs.readFileSync(path.join(__dirname, '..', 'templates', 'views', templateName), 'utf8');
   const template = handlebars.compile(emailTemplate);
   const emailContent = template(templateOptions);
@@ -32,6 +32,6 @@ function sendEmail (body, templateName, templateOptions, cb) {
     }
     return cb(null, `Message ${info.messageId} sent: ${info.response}`);
   });
-}
+};
 
 module.exports = sendEmail;
