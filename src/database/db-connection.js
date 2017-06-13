@@ -7,7 +7,7 @@ const user = process.env.DB_USER;
 const pass = process.env.DB_PASS;
 const database = process.env.DB_DATABASE;
 
-const uri = `mongodb://${user}:${pass}@ds137141.mlab.com:37141/${database}`;
+const uri = `mongodb://${user}:${pass}@ds123662.mlab.com:23662/${database}`;
 const options = {
   server: { socketOptions: { keepAlive: 300000, connectTimeoutMS: 30000 } },
   replset: { socketOptions: { keepAlive: 300000, connectTimeoutMS: 30000 } }
