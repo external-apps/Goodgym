@@ -12,6 +12,7 @@ const home = (req, res) => {
       }
       res.render('home', {
         run: run,
+        location: run.data.location,
         destination: run.data.toLocation[0],
         apiKey: apiKey,
         user: req.user,
