@@ -11,10 +11,9 @@
         <h4>Task</h4>
         <textarea name="task">{{ run.data.name }} {{ run.data.strapline }}</textarea>
       </div>
-
       <div class="location form">
         <h4>Location</h4>
-        <textarea name="location" class="location-info">{{ run.data.location.streetAddress }}, {{ run.data.location.addressLocality }}, {{ run.data.location.postalCode }}</textarea>
+        <textarea name="location" class="location-info">{{ location.address.streetAddress }}, {{ location.address.addressLocality }}, {{ location.address.postalCode }}</textarea>
       </div>
 
       <span class="destination hidden">{{ destination.address.streetAddress }}, {{ destination.address.addressLocality }}, {{ destination.address.postalCode }}</span>
