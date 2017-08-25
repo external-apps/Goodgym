@@ -56,11 +56,13 @@ window.home = (function () {
 
   function saveToDatabase () {
     var runId = window.location.pathname.slice(1);
-    waypoints.forEach(function (point) {
-      if (waypointsFromDatabase.indexOf(point) === -1) {
-        waypointsFromDatabase.push(point);
-      }
-    });
+    if (waypoints !== undefined) {
+      waypoints.forEach(function (point) {
+        if (waypointsFromDatabase.indexOf(point) === -1) {
+          waypointsFromDatabase.push(point);
+        }
+      });
+    }
 
     var taskObj = {
       mapDetails: waypointsFromDatabase,
